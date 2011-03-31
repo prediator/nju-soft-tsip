@@ -4,11 +4,8 @@
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.4.min.js" /> "></script>
 <script type="text/javascript" src="<c:url value="/resources/js/json.min.js" /> "></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	alert("f");
-	
+$(document).ready(function(){	
 	$.postJSON("create", {name:"ljj"}, function(user) {
-		alert("a")
 		alert(user.status)
 	})
 })
