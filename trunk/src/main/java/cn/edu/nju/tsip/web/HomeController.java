@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Validator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,17 @@ public class HomeController {
 	
 	private IUserService<User> userService;
 	
+	private Validator validator;
+	
+	public Validator getValidator() {
+		return validator;
+	}
+
+	@Autowired
+	public void setValidator(Validator validator) {
+		this.validator = validator;
+	}
+
 	@Autowired
 	public void setUserService(IUserService<User> userService) {
 		this.userService = userService;
