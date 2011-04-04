@@ -13,7 +13,7 @@ public class UserServiceImpl<T extends User> extends ServiceImpl<T> implements
 
 	@Override
 	public void create(T baseBean) {
-		// TODO Auto-generated method stub
+		dao.create(baseBean);
 
 	}
 
