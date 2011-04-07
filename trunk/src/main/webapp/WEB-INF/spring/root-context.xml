@@ -9,6 +9,12 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
+	<!-- 下载支持 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+         <!-- one of the properties available; the maximum file size in bytes -->
+         <property name="maxUploadSize" value="100000"/>
+    </bean>
+	
 	 <!-- 数据库连接池 -->  
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource">
@@ -16,7 +22,7 @@
 			value="com.mysql.jdbc.Driver">
 		</property>
 		<property name="url"
-			value="jdbc:mysql://localhost/tsip">
+			value="jdbc:mysql://localhost/tsip?useUnicode=true&amp;characterEncoding=UTF-8">
 		</property>
 		<property name="username" value="root"></property>
 	</bean>
