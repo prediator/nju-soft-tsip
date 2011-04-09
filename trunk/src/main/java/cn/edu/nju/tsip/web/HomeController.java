@@ -61,8 +61,8 @@ public class HomeController {
 	public @ResponseBody Map<String, ? extends Object> create(@RequestBody User user, HttpServletResponse response){
 		System.out.println(user.getName());
 		userService.create(user);
+		System.out.println(userService.find(User.class, 1));
 		return Collections.singletonMap("status",true);	
 	}
 	
 }
-

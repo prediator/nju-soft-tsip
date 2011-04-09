@@ -7,13 +7,13 @@ public class BaseEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Integer id;
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
