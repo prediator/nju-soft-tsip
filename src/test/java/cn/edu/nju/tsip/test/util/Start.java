@@ -6,7 +6,7 @@ import org.mortbay.jetty.webapp.WebAppContext;
 public class Start {
 
 	public static final int PORT = 8080;
-	public static final String CONTEXT = "/tsip";
+	public static final String CONTEXT = "";
 
 	public static void main(String[] args) throws Exception {
 		//Initialize the database which use to test
