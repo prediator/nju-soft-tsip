@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=7" />
 <title>师生交流平台</title>
-
+<link href="/resources/favicon.ico" rel="SHORTCUT ICON"/>
 <link href="/resources/themes/default/style.css" rel="stylesheet" type="text/css" />
 <link href="/resources/themes/css/core.css" rel="stylesheet" type="text/css" />
 <link href="/resources/uploadify/css/uploadify.css" rel="stylesheet" type="text/css" />
