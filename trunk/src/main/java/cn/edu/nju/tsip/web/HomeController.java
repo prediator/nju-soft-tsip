@@ -57,6 +57,18 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="/index", method=RequestMethod.GET)
+	public String index() {
+		logger.info("Welcome index!");
+		return "index";
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String login(){
+		logger.info("login page");
+		return "login";
+	}
+	
 	@RequestMapping(value="/create",method=RequestMethod.POST)
 	public @ResponseBody Map<String, ? extends Object> create(@RequestBody User user, HttpServletResponse response){
 		System.out.println(user.getName());

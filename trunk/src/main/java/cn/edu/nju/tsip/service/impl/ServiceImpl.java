@@ -21,7 +21,7 @@ public abstract class ServiceImpl<T extends BaseEntity> implements IService<T> {
 	}
 	
 	public T find(Class<T> clazz, int id){
-		return dao.find(clazz, id);
+		return dao.get(clazz, id);
 	}
 	
 	public abstract void create(T baseBean);

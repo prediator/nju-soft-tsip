@@ -6,7 +6,7 @@
 <script type="text/javascript" src="<c:url value="/resources/js/json.min.js" /> "></script>
 <script type="text/javascript">
 $(document).ready(function(){	
-	$.postJSON("create", {name:"梁建均"}, function(user) {
+	$.postJSON("create", {name:"梁建均",loginName:"ljj",password:"123"}, function(user) {
 		alert(user.status)
 	})
 })

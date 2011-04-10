@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.edu.nju.tsip.dao.IDao;
@@ -18,15 +19,16 @@ import cn.edu.nju.tsip.entity.User;
 
 import com.google.common.collect.Sets;
 
-@Transactional
+@Service("userDetailsService")
+@Transactional(readOnly=true)
 public class UserDetailsServiceImpl implements UserDetailsService{
-	
 	@Autowired
 	private IDao<User> dao;
 
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException, DataAccessException {
-		User user = dao.find(User.class, 1);
+		System.out.println(username +" " + dao);
+		User user = dao.findUniqueBy("from User as user where user.loginName=?", username);
 		
 		if (user == null) {
 			throw new UsernameNotFoundException("用户" + username + " 不存在");
@@ -55,6 +57,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		return authSet;
 	}
 
+	@Autowired
 	public void setDao(IDao<User> dao) {
 		this.dao = dao;
 	}
