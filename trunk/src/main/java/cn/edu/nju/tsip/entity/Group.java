@@ -4,13 +4,17 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 public class Group extends BaseEntity {
 	
 	private String name;
 	
-	@OneToMany
-    @JoinColumn
+	@ManyToMany
+	@JoinTable
+	@Fetch(FetchMode.SUBSELECT)
 	private Set<User> users;
 
 	public String getName() {

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+@Entity
 public class Message extends BaseEntity {
 	
 	private String content;
