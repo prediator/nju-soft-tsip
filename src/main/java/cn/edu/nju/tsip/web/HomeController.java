@@ -71,7 +71,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/create",method=RequestMethod.POST)
 	public @ResponseBody Map<String, ? extends Object> create(@RequestBody User user, HttpServletResponse response){
-		System.out.println(user.getName());
+		System.out.println(user.getRealName());
 		userService.create(user);
 		System.out.println(userService.find(User.class, 1));
 		return Collections.singletonMap("status",true);	

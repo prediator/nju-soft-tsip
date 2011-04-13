@@ -8,6 +8,13 @@ public class InitDatabase {
 
 	/**
 	 * @param args
+	 * 
+	 * 初始化Role :
+	 *  student
+	 *  teacher
+	 *  counsellor
+	 *  admin 
+	 *  leader
 	 */
 	public static void main(String[] args) {
 		
