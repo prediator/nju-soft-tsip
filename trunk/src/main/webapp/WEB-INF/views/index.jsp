@@ -64,7 +64,7 @@ if ($.browser.msie) {
 					<li><a href="changepwd.html" target="dialog">设置</a></li>
 					<li><a href="javascript:void(0)">反馈</a></li>
 					<li><a href="http://bbs.dwzjs.com" target="_blank">TSS</a></li>
-					<li><a href="login.html">退出</a></li>
+					<li><a href="/login">退出</a></li>
 				</ul>
 				<ul class="themeList" id="themeList">
 					<li theme="default"><div class="selected">蓝色</div></li>
