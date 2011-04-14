@@ -11,55 +11,94 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED )
 public class User extends BaseEntity {
 	
+	/**
+	 * 登录帐号，如ljj09
+	 */
 	@NotNull
 	@Size(min = 2, max = 25)
 	@Column(nullable = false, unique = true)
 	private String loginName;
 	
+	/**
+	 * 密码
+	 */
 	@NotNull
 	@Size(min = 2, max = 25)
 	private String password;
 	
+	/**
+	 * 真实姓名
+	 */
 	@NotNull
 	@Size(min = 2, max = 25)
-	private String realName; //真实姓名
+	private String realName; 
 	
 	@ManyToMany
 	@JoinTable
 	@Fetch(FetchMode.SUBSELECT)
 	private List<Role> roleList = Lists.newArrayList();
 	
+	/**
+	 * 用户头像文件所在位置，null的时候没有头像
+	 */
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn
 	private Picture headImg;
 	
+	/**
+	 * 用户的联系人分组
+	 */
 	@OneToMany(fetch = FetchType.LAZY)
     @JoinColumn
-	private Set<Group> groups;
+	private Set<UserGroup> userGroups = Sets.newHashSet();
 	
+	/**
+	 * 用户总共发布的消息列表
+	 * @see Message
+	 */
 	@OneToMany(mappedBy="publisher",fetch = FetchType.LAZY)
-	private Set<Message> publishMsgs;
+	private Set<Message> publishMsgs = Sets.newHashSet();
 	
+	/**
+	 * 用户发表的微博（状态）列表，包括转发的微博
+	 * @see MBlog
+	 */
 	@OneToMany(mappedBy="publisher",fetch = FetchType.LAZY)
 	@OrderBy("createDate desc")
-	private List<MBlog> mBlogs;
+	private List<MBlog> mBlogs = Lists.newArrayList();
 	
+	/**
+	 * 用户相册列表，包括分享的相册
+	 * @see Album
+	 */
 	@OneToMany(mappedBy="owner")
-	private Set<Album> albums;
+	private Set<Album> albums = Sets.newHashSet();
 	
+	/**
+	 * 用户的文章分类列表，用户发表的或分享的文章在<code>Category.article3</code>
+	 * @see Category
+	 */
 	@OneToMany(mappedBy="owner")
-	private Set<Category> categories;
+	private Set<Category> categories = Sets.newHashSet();
 	
+	/**
+	 * 用户创建日期，年月日时分秒
+	 */
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date createDate;
 	
+	/**
+	 * 用户收到的message，以及对message所做的操作
+	 * @see Message_User
+	 */
 	@OneToMany(mappedBy="user",fetch = FetchType.LAZY)
-	private Set<Message_User> user2Messages;
+	private Set<Message_User> user2Messages = Sets.newHashSet();
 
 	public String getLoginName() {
 		return loginName;
@@ -101,12 +140,12 @@ public class User extends BaseEntity {
 		this.headImg = headImg;
 	}
 
-	public Set<Group> getGroups() {
-		return groups;
+	public Set<UserGroup> getUserGroups() {
+		return userGroups;
 	}
 
-	public void setGroups(Set<Group> groups) {
-		this.groups = groups;
+	public void setGroups(Set<UserGroup> userGroups) {
+		this.userGroups = userGroups;
 	}
 
 	public Date getCreateDate() {

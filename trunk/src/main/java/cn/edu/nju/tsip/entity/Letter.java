@@ -3,20 +3,39 @@ package cn.edu.nju.tsip.entity;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
+/**
+ * 定义悄悄话的属性。悄悄话也是在线聊天的基础
+ * @author ljj
+ *
+ */
 @Entity
 public class Letter extends BaseEntity {
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	/**
+	 * 悄悄话发送者
+	 */
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
 	private User sender;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	/**
+	 * 悄悄话接收者
+	 */
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
 	private User receiver;
 	
+	/**
+	 * 悄悄话内容
+	 */
+	@NotNull
 	private String content;
 	
+	/**
+	 * 创建时间
+	 */
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date createDate;
 

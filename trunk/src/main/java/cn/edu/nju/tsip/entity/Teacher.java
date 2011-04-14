@@ -7,11 +7,20 @@ import javax.persistence.*;
 @Entity
 public class Teacher extends User {
 	
+	/**
+	 * 老师工号
+	 */
 	private int trno;
 	
+	/**
+	 * 性别
+	 */
 	private boolean sex;
 	
-	@Temporal(value = TemporalType.TIMESTAMP)
+	/**
+	 * 出生年月日
+	 */
+	@Temporal(value = TemporalType.DATE)
 	private Date birthday;
 
 	public int getTrno() {

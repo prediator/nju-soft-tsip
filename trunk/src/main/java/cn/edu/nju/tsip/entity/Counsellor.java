@@ -1,15 +1,17 @@
 package cn.edu.nju.tsip.entity;
+
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-public class Student extends User {
-	
+public class Counsellor extends User {
 	/**
-	 * 学生学号
+	 * 辅导员学号（貌似辅导员是学生）
 	 */
-	private int stno;
+	private int csno;
 	
 	/**
 	 * 备注，或者是自我介绍
@@ -37,12 +39,12 @@ public class Student extends User {
 	@Temporal(value = TemporalType.DATE)
 	private Date birthday;
 
-	public int getStno() {
-		return stno;
+	public int getCsno() {
+		return csno;
 	}
 
-	public void setStno(int stno) {
-		this.stno = stno;
+	public void setCsno(int csno) {
+		this.csno = csno;
 	}
 
 	public String getRemarks() {
@@ -84,6 +86,4 @@ public class Student extends User {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-
-
 }
