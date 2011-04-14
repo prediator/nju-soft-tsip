@@ -23,4 +23,8 @@ public class UserServiceImpl<T extends User> extends ServiceImpl<T> implements
 
 	}
 
+	public T getUser(String loginName,String password) {
+		return dao.findUniqueBy("from User as user where user.loginName =? and user.password =?", loginName,password);
+	}
+
 }
