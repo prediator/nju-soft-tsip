@@ -2,33 +2,45 @@ package cn.edu.nju.tsip.entity;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 public class UploadFile extends BaseEntity {
 	
-	private String nameString;
+	/**
+	 * 上传的文件名
+	 */
+	private String name;
 	
+	/**
+	 * 件所在的位置的相对地址，用于url的指向之用
+	 */
+	private String location;
+	
+	/**
+	 * 对文件的描述，也就是显示给用户看的
+	 */
 	private String description;
 	
+	/**
+	 * 上传时间
+	 */
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date createDate;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	/**
+	 * 上传者
+	 */
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
 	private User publisher;
 
-	public String getNameString() {
-		return nameString;
+	public String getName() {
+		return name;
 	}
 
-	public void setNameString(String nameString) {
-		this.nameString = nameString;
+	public void setNameString(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {
@@ -53,6 +65,14 @@ public class UploadFile extends BaseEntity {
 
 	public void setPublisher(User publisher) {
 		this.publisher = publisher;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getLocation() {
+		return location;
 	}
 
 }

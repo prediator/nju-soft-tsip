@@ -1,20 +1,49 @@
 package cn.edu.nju.tsip.entity;
 
 import java.util.List;
-import java.util.Set;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
+import com.google.common.collect.Lists;
+
+/**
+ * 公告的属性的定义
+ * @author ljj
+ *
+ */
 @Entity
 public class BBS extends BaseEntity {
 	
+	/**
+	 * 公告内容
+	 */
+	@NotNull
 	private String content;
 	
+	/**
+	 * 标题
+	 */
+	@NotNull
+	private String title;
+	
+	/**
+	 * 公告发布者
+	 */
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn
 	private User publisher;
 	
-	private Set<User> readUsers;
+	/**
+	 * 公告被查看的次数，注意这里可能出现一个人阅读多次的问题
+	 */
+	private int readTimes;
 	
-	private List<Comment> comments;
+	/**
+	 * 评论列表
+	 */
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn
+	private List<Comment> comments = Lists.newArrayList();
 
 	public String getContent() {
 		return content;
@@ -32,20 +61,28 @@ public class BBS extends BaseEntity {
 		this.publisher = publisher;
 	}
 
-	public Set<User> getReadUsers() {
-		return readUsers;
-	}
-
-	public void setReadUsers(Set<User> readUsers) {
-		this.readUsers = readUsers;
-	}
-
 	public List<Comment> getComments() {
 		return comments;
 	}
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public void setReadTimes(int readTimes) {
+		this.readTimes = readTimes;
+	}
+
+	public int getReadTimes() {
+		return readTimes;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getTitle() {
+		return title;
 	}
 
 }
