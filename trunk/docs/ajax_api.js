@@ -62,6 +62,13 @@
  * 
  * 4 凡是客户端发出的请求都会以client开头，否则将遭到过滤
  * 5 服务器基本地址 http://xxx.xx.xx.xx/ (加上client头之后就是 http://xxx.xx.xx.xx/client)
+ * 6 该api随时更新，请以网络版为准，网络版所在地址：
+ * http://code.google.com/p/nju-soft-tsip/source/browse/trunk/docs/ajax_api.js
+ * 7 更新内容如下（有更新将会记在这里，方便索引和查找）
+ * -------------------------------------------
+ * update1：
+ * 整个文件格式定义 和 login api的添加
+ * ------------------------------------------
  * @author leung jianjun
  */
  
@@ -73,12 +80,14 @@
  var login = {
  	loginName:"ljj09",
  	password:"123",
- 	loginPlace:"xianlin"
+ 	loginPlace:"xianlin",
+ 	role:""//
  }
  
  var result = {
  	status:ok,
  	sessionId:"dsafdsafdsafdsafd"
+ 	
  }
  
  var error = {
