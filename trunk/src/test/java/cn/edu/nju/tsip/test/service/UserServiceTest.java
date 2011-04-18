@@ -4,18 +4,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import cn.edu.nju.tsip.entity.User;
 import cn.edu.nju.tsip.service.IUserService;
+import cn.edu.nju.tsip.test.util.SpringJUnit45ClassRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"webapp/WEB-INF/spring:root-context.xml"})
+@RunWith(SpringJUnit45ClassRunner.class)
+@ContextConfiguration(locations={"classpath:spring/root-context.xml","classpath:spring/appServlet/servlet-context.xml","classpath:spring/appServlet/controllers.xml"})
 public class UserServiceTest {
 	
-	@Autowired
 	private IUserService<User> userService;
 
+	@Autowired
 	public void setUserService(IUserService<User> userService) {
 		this.userService = userService;
 	}
