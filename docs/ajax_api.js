@@ -74,6 +74,9 @@
  
 //==========================================================
  /**
+  * 登录
+  * 注意：角色列表：
+  *      student,teacher,admin,leader,counsellor
   * url:client/user/login
   * @type 
   */
@@ -86,7 +89,8 @@
  
  var result = {
  	status:ok,
- 	sessionId:"dsafdsafdsafdsafd"
+ 	sessionId:"dsafdsafdsafdsafd",
+ 	role:"student"
  	
  }
  
@@ -94,5 +98,151 @@
  	error :"参数错误"
  }
  //==========================================================
+ /**
+  * 发布状态（微博）
+  * 注意：微博的发布分成两种，1是原创的状态，2是转发的状态。转发的状态中，内容是对状态的评论
+  *       id值很重要，是每一条信息的唯一标志，尽可能把id保存起来，也就是放在前台，并把id隐藏
+  * 例子：  mblog1: I hate history class.
+  *        mblog2 follow mblog1 :  the same to me. @ljj I hate history class.
+  *        mblog3 follow mblog2 :  I don't think so @qc the same to me @ljj I hate history class
+  *        则有：mblog1 content:I hate history class
+  *             mblog2 content:the same to me.
+  *                    flwMBlogId:mblog1 id
+  *             mblog3 content:I don't think so
+  *                    flwMBlogId:mblog2 id
+  * @type 
+  */
+ var add_mblog = {
+ 	content:"what a good mblog"
+ }
  
+ var add_mblog = {
+ 	content:"a comment to the mblog",
+ 	flwMBlogId:34331232//原来的微博id
+ }
+ 
+ var delete_mblog = {
+ 	id:34331232
+ }
+ 
+ /**
+  * 获取某个状态的具体信息
+  * 
+  * @type 
+  */
+ var ask_get_mblog = {
+ 	id:123
+ }
+ 
+ var get_mblog = {
+ 	id:1324, 
+ 		 createDate:"yyyy-mm-dd HH:mm:ss",         //原创状态
+ 		 publisher:{name:"ljj",
+ 		            id:"12323"},
+ 		 content:"a comment to the mblog", 
+ 		 flwMBlog:{id:1323,
+ 		 		   createDate:"yyyy-mm-dd HH:mm:ss",         //转发的微博，并不会显示原来的微博的评论
+ 		 		   publisher:{name:"ljj",
+ 		            		  id:"12323"},
+ 		 		   content:"what a good mblog"},          
+ 		 comments:[{id:2326,
+ 		            content:"what a good comment!",    //没有子评论的评论
+ 		            createDate:"yyyy-mm-dd HH:mm:ss",
+ 		            author:{name:"lhh",
+ 		                    id:1325}},
+ 		            {id:2327,
+ 		             content:"what a great comment!",
+ 		             createDate:"yyyy-mm-dd HH:mm:ss",
+ 		             author:{name:"jzh",
+ 		                    id:1326}},
+ 		            {id:2328,
+ 		             content:"what a great comment!",  //有子评论的评论
+ 		             createDate:"yyyy-mm-dd HH:mm:ss",
+ 		             author:{name:"jzh",
+ 		                    id:1326},
+ 		             cmntChilds:[{id:2329,
+ 		                           content:"a comment for the comment!",
+ 		                           createDate:"yyyy-mm-dd HH:mm:ss",
+ 		                           author:{name:"jzh",
+ 		                                   id:1326}},
+ 		                           {id:2330,
+ 		                           content:"another comment for the comment",
+ 		                           createDate:"yyyy-mm-dd HH:mm:ss",
+ 		                           author:{name:"jzh",
+ 		                                   id:1326}}
+ 		                           //...more comments
+ 		                           ]
+ }
+ 
+ /**
+  * 获取所有人的状态
+  * 注意：一个状态可能被转发了n多次，所以mblog下会有flwMBlog，flwMBlog下还可能有flwBlog，
+  *      然后组合成一个长状态，所以要判别直到某个flwMBlog没有flwMBlog为止
+  *      what a hot mblog @lhh I don't think so @qc the same to me @ljj I hate history class
+  *     一个状态的会有一个评论列表，而每一个评论下都会有子评论列表，每个子评论还会有子评论...
+  * @type 
+  */
+ var get_mblogs = {
+ 	mblogs:[
+ 		{id:1323,                           //id的作用是进入具体的微博查看详细的信息
+ 		 createDate:"yyyy-mm-dd HH:mm:ss",         //原创状态
+ 		 publisher:{name:"ljj",
+ 		            id:"12323"},
+ 		 content:"what a good mblog", 
+ 		 comments:[{id:2324,
+ 		            content:"what a good comment!",    //没有子评论的评论
+ 		            createDate:"yyyy-mm-dd HH:mm:ss",
+ 		            author:{name:"lhh",
+ 		                    id:1323}},
+ 		            {id:2325,
+ 		             content:"what a great comment!",
+ 		             createDate:"yyyy-mm-dd HH:mm:ss",
+ 		             author:{name:"jzh",
+ 		                     id:1324}}
+ 		            //........more comments
+ 		           ]},
+ 		 /////////////////////////////////////////////////
+ 		{id:1324, 
+ 		 createDate:"yyyy-mm-dd HH:mm:ss",         //原创状态
+ 		 publisher:{name:"ljj",
+ 		            id:"12323"},
+ 		 content:"a comment to the mblog", 
+ 		 flwMBlog:{id:1323,
+ 		 		   createDate:"yyyy-mm-dd HH:mm:ss",         //转发的微博，并不会显示原来的微博的评论
+ 		 		   publisher:{name:"ljj",
+ 		            		  id:"12323"},
+ 		 		   content:"what a good mblog"},          
+ 		 comments:[{id:2326,
+ 		            content:"what a good comment!",    //没有子评论的评论
+ 		            createDate:"yyyy-mm-dd HH:mm:ss",
+ 		            author:{name:"lhh",
+ 		                    id:1325}},
+ 		            {id:2327,
+ 		             content:"what a great comment!",
+ 		             createDate:"yyyy-mm-dd HH:mm:ss",
+ 		             author:{name:"jzh",
+ 		                    id:1326}},
+ 		            {id:2328,
+ 		             content:"what a great comment!",  //有子评论的评论
+ 		             createDate:"yyyy-mm-dd HH:mm:ss",
+ 		             author:{name:"jzh",
+ 		                    id:1326},
+ 		             cmntChilds:[{id:2329,
+ 		                           content:"a comment for the comment!",
+ 		                           createDate:"yyyy-mm-dd HH:mm:ss",
+ 		                           author:{name:"jzh",
+ 		                                   id:1326}},
+ 		                           {id:2330,
+ 		                           content:"another comment for the comment",
+ 		                           createDate:"yyyy-mm-dd HH:mm:ss",
+ 		                           author:{name:"jzh",
+ 		                                   id:1326}}
+ 		                           //...more comments
+ 		                           ]}
+ 		            //........
+ 		           ]}
+ 		  //////////////////////////////////////////////////////////
+ 		//more 状态
+ 	]
+ }
  //==========================================================

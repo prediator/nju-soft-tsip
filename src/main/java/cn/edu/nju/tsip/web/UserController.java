@@ -46,7 +46,7 @@ public class UserController {
 		this.validator = validator;
 	}
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@RequestMapping(value="/client/user/login",method=RequestMethod.POST)
 	public @ResponseBody Map<String, ? extends Object> create(@RequestBody Map<String, String> param, HttpServletResponse response,HttpSession session){
