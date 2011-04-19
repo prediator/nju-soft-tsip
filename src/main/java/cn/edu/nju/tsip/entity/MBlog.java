@@ -19,7 +19,7 @@ public class MBlog extends BaseEntity {
 	 */
 	@NotNull
 	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date createDate;
+	private Date createDate = new Date();
 	
 	/**
 	 * 微博发布者

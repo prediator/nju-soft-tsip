@@ -127,7 +127,7 @@
  }
  
  /**
-  * 
+  * url:client/mblog/delete
   * @type 
   */
  var delete_mblog = {
@@ -189,6 +189,7 @@
   *      然后组合成一个长状态，所以要判别直到某个flwMBlog没有flwMBlog为止
   *      what a hot mblog @lhh I don't think so @qc the same to me @ljj I hate history class
   *     一个状态的会有一个评论列表，而每一个评论下都会有子评论列表，每个子评论还会有子评论...
+  *  url:/client/mblog/getAll
   * @type 
   */
  var get_mblogs = {
