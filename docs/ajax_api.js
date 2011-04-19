@@ -88,13 +88,14 @@
  }
  
  var result = {
- 	status:ok,
+ 	status:"true",
  	sessionId:"dsafdsafdsafdsafd",
  	role:"student"
  	
  }
  
  var error = {
+ 	status:"error",
  	error :"参数错误"
  }
  //==========================================================
@@ -110,6 +111,7 @@
   *                    flwMBlogId:mblog1 id
   *             mblog3 content:I don't think so
   *                    flwMBlogId:mblog2 id
+  * url:client/mblog/create
   * @type 
   */
  var add_mblog = {
@@ -120,7 +122,14 @@
  	content:"a comment to the mblog",
  	flwMBlogId:34331232//原来的微博id
  }
+ var result = {
+ 	status:"true"
+ }
  
+ /**
+  * 
+  * @type 
+  */
  var delete_mblog = {
  	id:34331232
  }
