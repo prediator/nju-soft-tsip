@@ -14,5 +14,6 @@ public interface IDao<T> {
 	public List<T> list(String hql, int firstResult, int maxSize,Object ...params);
 	public Query createQuery(String hql);
 	public T findUniqueBy(String hql, Object... values);
+	public void update(T baseBean);
 
 }

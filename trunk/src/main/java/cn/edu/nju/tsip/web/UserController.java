@@ -49,7 +49,7 @@ public class UserController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@RequestMapping(value="/client/user/login",method=RequestMethod.POST)
-	public @ResponseBody Map<String, ? extends Object> create(@RequestBody Map<String, String> param, HttpServletResponse response,HttpSession session){
+	public @ResponseBody Map<String, String> create(@RequestBody Map<String, String> param, HttpServletResponse response,HttpSession session){
 		logger.info("client login: "+param.get("loginName"));
 		User user = userService.getUser((String) param.get("loginName"),(String) param.get("password"));
 		if(user == null){
@@ -60,9 +60,10 @@ public class UserController {
 		}else{
 			session.setAttribute("id", user.getId());
 			session.setAttribute("place", param.get("loginPlace"));
-			Map<String,Object> result = Maps.newHashMap();
-			result.put("status",true);
+			Map<String,String> result = Maps.newHashMap();
+			result.put("status","true");
 			result.put("sessionId", session.getId());
+			result.put("role", user.getRoleList().get(0).getName());
 			return result;
 			
 		}

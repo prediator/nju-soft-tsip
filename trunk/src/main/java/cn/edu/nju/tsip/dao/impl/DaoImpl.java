@@ -70,6 +70,10 @@ public class DaoImpl<T> extends HibernateDaoSupport implements IDao<T> {
 		}
 		return (T) query.uniqueResult();
 	}
+
+	public void update(T baseBean) {
+		getHibernateTemplate().update(baseBean);
+	}
 	
 
 }
