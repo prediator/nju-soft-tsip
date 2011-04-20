@@ -64,10 +64,14 @@
  * 5 服务器基本地址 http://xxx.xx.xx.xx/ (加上client头之后就是 http://xxx.xx.xx.xx/client)
  * 6 该api随时更新，请以网络版为准，网络版所在地址：
  * http://code.google.com/p/nju-soft-tsip/source/browse/trunk/docs/ajax_api.js
- * 7 更新内容如下（有更新将会记在这里，方便索引和查找）
+ * 7 一旦登录，每次请求都要使用sessionid，使用方法是：在url中增加;jsessionid=1s8yil3wcyek81vdp7ggpuaw3q，也就是
+ *   http://xxx.xx.xx.xx/xxx/xxx/xxxx;jsessionid=1s8yil3wcyek81vdp7ggpuaw3q
+ * 附录 更新内容如下（有更新将会记在这里，方便索引和查找）
  * -------------------------------------------
  * update1：
  * 整个文件格式定义 和 login api的添加
+ * 曾加发微博的api
+ * 注意中 增加第7条
  * ------------------------------------------
  * @author leung jianjun
  */
