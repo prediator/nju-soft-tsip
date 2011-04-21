@@ -74,13 +74,16 @@ public class MblogController {
 		}
 		mBlog.setPublisher(userService.find(User.class, (Integer)session.getAttribute("id")));
 		mblogService.create(mBlog);
-		Set<ConstraintViolation<MBlog>> failures = validator.validate(mBlog);
+		return Collections.singletonMap("status", "true");
+		
+		/*Set<ConstraintViolation<MBlog>> failures = validator.validate(mBlog);
 		if (!failures.isEmpty()) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return validationMessages(failures);
 		} else {
+			mblogService.create(mBlog);
 			return Collections.singletonMap("status", "true");
-		}
+		}*/
 	}
 	
 	@RequestMapping(value="/client/mblog/delete",method=RequestMethod.POST)
@@ -89,7 +92,7 @@ public class MblogController {
 		if(mblogService.delete((Integer)param.get("id"), (Integer)session.getAttribute("id")) ){
 			return Collections.singletonMap("status", "true");
 		}else{
-			return Collections.singletonMap("status", "true");
+			return Collections.singletonMap("status", "false");
 		}
 	}
 	

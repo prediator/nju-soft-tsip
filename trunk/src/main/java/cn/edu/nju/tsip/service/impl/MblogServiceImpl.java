@@ -1,5 +1,7 @@
 package cn.edu.nju.tsip.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,6 +35,11 @@ public class MblogServiceImpl<T extends MBlog> extends ServiceImpl<T> implements
 			dao.update(mblog);
 			return true;
 		}
+	}
+
+	public List<T> getMBlogs(int page) {
+		//dao.list("from MBlog as mblog", "", maxSize, params);
+		return null;
 	}
 
 }
