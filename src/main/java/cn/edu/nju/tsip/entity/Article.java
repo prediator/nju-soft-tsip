@@ -18,13 +18,22 @@ import com.google.common.collect.Lists;
 /**
  * 定义日志文章的属性，包括分享的文章，在创建新文章时调用validator，检查属性，在分享的文章中不要检查！
  * @author ljj
+ * @see #category
+ * @see #comments
+ * @see #content
+ * @see #createDate
+ * @see #publisher
+ * @see #shareArticle
+ * @see #title
+ * @see #updateDate
+ * @see #visible
  *
  */
 @Entity
 public class Article extends BaseEntity {
 	
 	/**
-	 * 文章标题
+	 * 文章标题，如果是分享的，写分享理由
 	 */
 	@NotNull
 	private String title;
@@ -45,7 +54,7 @@ public class Article extends BaseEntity {
 	private User publisher;
 	
 	/**
-	 * 文章内容，如果是分享，这里是对文章说明，分享里有之类的
+	 * 文章内容，如果是分享，这里为空
 	 */
 	@NotNull
 	private String content;
