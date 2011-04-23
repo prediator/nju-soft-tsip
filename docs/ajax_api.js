@@ -95,6 +95,7 @@
  var result = {
  	status:"true",
  	sessionId:"dsafdsafdsafdsafd",
+ 	realName:"ljj",
  	role:"student"
  	
  }
@@ -281,6 +282,15 @@
  	
  }
  
+ var result_publish_article = {
+ 	status:"true"
+ }
+ 
+ var result_publish_article = {
+ 	status:"false",
+ 	error:"参数错误"
+ }
+ 
  var publish_article = {//分享别人的文章
  	visible:true,//如果这里为false，文章是收藏；如果为true，则为分享。有点巧妙，如果客户端并未提供此功能，那就设为true
  	title:"this article is so good"，//这里填写你分享的理由
@@ -289,7 +299,20 @@
  }
  
  var add_category = {
- 	
+ 	name:"technie"
+ }
+ 
+ var result_add_category = {
+ 	status:"true"
+ }
+ 
+ var result_add_category = {
+ 	status:"false",
+ 	error:"参数错误"
+ }
+ 
+ var delete_category = {
+ 	name:"technie"
  }
  
  /**
@@ -327,9 +350,11 @@
  	content:"hi,i am mary"
  }
  
+ 
  var receive_content = {//论询api，论询间隔时间策略由客户端定义
  	messageList:[
  				{senderId:12313,
+ 				 name:"ljj",
  				 content:"yes i know you",
  				 createDate:""}//createDate 是用来显示服务器接收到的时间，让用户知道发送这实际发送这条消息的时间
  				 //...
