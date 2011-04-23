@@ -38,6 +38,8 @@ public class Letter extends BaseEntity {
 	 */
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date createDate;
+	
+	private boolean readed;
 
 	public User getSender() {
 		return sender;
@@ -69,6 +71,14 @@ public class Letter extends BaseEntity {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public void setReaded(boolean readed) {
+		this.readed = readed;
+	}
+
+	public boolean isReaded() {
+		return readed;
 	}
 
 }

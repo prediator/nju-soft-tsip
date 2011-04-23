@@ -269,21 +269,26 @@
  /**
   * 发布文章
   * 注意：1 文章分为自己可见的和他人可见的，当然你可以无视这个功能
-  * 	 2 发布文章中包含分享文章，分享的文章可以写一下你分享的理由,分享的文章
+  * 	 2 发布文章中包含分享文章，分享的文章可以写一下你分享的理由,分享的文章的title里放分享的理由，而content为空
   * 	 3 首次发布的文章的更新时间是发布时间，而对文章做更改时，就会改成最近一次的修改时间
   * @type 
   */
  var pulish_article = {//发布原创文章
  	visible:true,//是否对他人可见
  	content:"it is a long article, it is a long article it is a long article ......",
- 	title:"My first alticle",
+ 	title:"My first article",
  	category_name:"dairy"//分类处用name，这是这个name是唯一的，如果不方便，也可以用id，it depends on you!
  	
  }
  
  var publish_article = {//分享别人的文章
  	visible:true,//如果这里为false，文章是收藏；如果为true，则为分享。有点巧妙，如果客户端并未提供此功能，那就设为true
- 	content:"this article is so good"，//这里填写你分享的理由
+ 	title:"this article is so good"，//这里填写你分享的理由
+ 	category_name:"myOwnCategory",//你可以设定分享的文章在哪个分类里面
+ 	shareArticleId:12312//分享的文章的id
+ }
+ 
+ var add_category = {
  	
  }
  
@@ -334,7 +339,34 @@
  
  
  //===========================================================
- 
+ var get_user_list = {
+ 	studentList:[
+ 				{id:123,realname:"ljj"},
+ 				{id:123,realname:"lhh"}
+ 				//more ... 
+ 	],
+ 	teacherList:[
+ 				{id:123,realname:"ljj"},
+ 				{id:123,realname:"lhh"}
+ 				//more ...
+ 	],
+ 	counsellorList:[
+ 				{id:123,realname:"ljj"},
+ 				{id:123,realname:"lhh"}
+ 				//more ...
+ 	],
+ 	adminList:[
+ 				{id:123,realname:"ljj"},
+ 				{id:123,realname:"lhh"}
+ 				//more ...
+ 	],
+ 	leaderList:[
+ 				{id:123,realname:"ljj"},
+ 				{id:123,realname:"lhh"}
+ 				//more ...
+ 	]
+ 	
+ }
  //===========================================================
  
  
