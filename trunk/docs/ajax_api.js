@@ -78,6 +78,7 @@
  */
  
 //==========================================================
+//======基本操作=============================================
  /**
   * 登录
   * 注意：角色列表：
@@ -104,6 +105,21 @@
  	status:"false",
  	error :"参数错误"
  }
+ /**
+  * 退出
+  * url:/client/user/exit
+  * @type 
+  */
+ var exit = {
+ }
+ 
+ var result = {//有点没必要
+ 	status:"true"
+ }
+ 
+ var result = {
+ 	status:"false"
+ }
  //==========================================================
  /**
   * 发布状态（微博）
@@ -129,10 +145,12 @@
  	flwMBlogId:34331232//原来的微博id
  }
  var result = {
- 	status:"true"
+ 	status:"true",
+ 	id:123//返回的id
  }
  
  /**
+  * 删除状态
   * url:client/mblog/delete
   * @type 
   */
@@ -140,17 +158,29 @@
  	id:34331232
  }
  
+ var result_delete_mblog = {
+ 	status:"true"
+ } 
+ 
+ var result_delete_mblog = {
+ 	status:"false"
+ }
+ 
  /**
   * 获取某个状态的具体信息
-  * 
+  * url:/client/mblog/getMblogDatail
   * @type 
   */
  var ask_get_mblog = {
  	id:123
  }
- 
- var get_mblog = {
- 	id:1324, 
+ var result_get_mblog = {
+ 	status:"false",
+ 	error:"参数错误"
+ }
+ var result_get_mblog = {
+ 		 status:"true",
+ 		 id:1324, 
  		 createDate:"yyyy-mm-dd HH:mm:ss",         //原创状态
  		 publisher:{name:"ljj",
  		            id:"12323"},
@@ -158,7 +188,7 @@
  		 flwMBlog:{id:1323,
  		 		   createDate:"yyyy-mm-dd HH:mm:ss",         //转发的微博，并不会显示原来的微博的评论
  		 		   publisher:{name:"ljj",
- 		            		  id:"12323"},
+ 		            		  id:12323},
  		 		   content:"what a good mblog"},          
  		 comments:[{id:2326,
  		            content:"what a good comment!",    //没有子评论的评论
