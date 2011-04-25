@@ -19,7 +19,7 @@ $.postJSON2 = function(url, data, callback) {
 $(document).ready(function(){	
 	$("#b").click(function(){
 		$.postJSON2($("#text2").val(), $("#text").val(), function(user) {
-			alert(user.status)
+			alert(JSON.stringify(user))
 		})
 	})
 })

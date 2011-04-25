@@ -11,8 +11,7 @@ import cn.edu.nju.tsip.service.IMblogService;
 
 @Service("mblogService")
 @Transactional
-public class MblogServiceImpl<T extends MBlog> extends ServiceImpl<T> implements
-		IMblogService<T> {
+public class MblogServiceImpl<T extends MBlog> extends ServiceImpl<T> implements IMblogService<T> {
 
 	@Override
 	public void create(T baseBean) {
@@ -40,6 +39,10 @@ public class MblogServiceImpl<T extends MBlog> extends ServiceImpl<T> implements
 	public List<T> getMBlogs(int page) {
 		//dao.list("from MBlog as mblog", "", maxSize, params);
 		return null;
+	}
+
+	public List<T> getAllMBlogs() {
+		return dao.list("from MBlog as mblog where mblog.deleted = false");
 	}
 
 }

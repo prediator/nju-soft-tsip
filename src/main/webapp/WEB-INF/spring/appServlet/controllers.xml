@@ -10,4 +10,11 @@
 	<!-- Scans within the base package of the application for @Components to configure as beans -->
 	<context:component-scan base-package="cn.edu.nju.tsip" />
 	 
+	<!-- interceptor for client  -->
+	<mvc:interceptors>
+		<mvc:interceptor>			
+			<mvc:mapping path="/client/**"/>
+			<bean class="cn.edu.nju.tsip.web.ClientLoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

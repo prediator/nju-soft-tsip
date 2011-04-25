@@ -13,13 +13,13 @@ import junit.framework.TestCase;
 
 public abstract class ControllerTest<T> extends TestCase{
 	
-	private HttpServletRequest request = new MockHttpServletRequest();
+	protected HttpServletRequest request = new MockHttpServletRequest();
 	
-    private HttpServletResponse response = new MockHttpServletResponse();
+	protected HttpServletResponse response = new MockHttpServletResponse();
     
-    private XmlWebApplicationContext context;
+	protected XmlWebApplicationContext context;
     
-    private MockServletContext msc;
+	protected MockServletContext msc;
     
     protected T controller;
     

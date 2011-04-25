@@ -1,5 +1,6 @@
 package cn.edu.nju.tsip.web;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,23 +50,45 @@ public class UserController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@RequestMapping(value="/client/user/login",method=RequestMethod.POST)
-	public @ResponseBody Map<String, String> create(@RequestBody Map<String, String> param, HttpServletResponse response,HttpSession session){
+	public @ResponseBody Map<String, String> login(@RequestBody Map<String, String> param, HttpServletResponse response,HttpSession session){
 		logger.info("client login: "+param.get("loginName"));
-		User user = userService.getUser((String) param.get("loginName"),(String) param.get("password"));
+		User user = userService.getUser(param.get("loginName"), param.get("password"));
 		if(user == null){
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			Map<String, String> failureMessages = new HashMap<String, String>();
+			failureMessages.put("status", "false");
 			failureMessages.put("error", "参数错误");
 			return failureMessages;
 		}else{
 			session.setAttribute("id", user.getId());
-			session.setAttribute("place", param.get("loginPlace"));
+			user.setOnline(true);
+			user.setLoginPlace(param.get("loginPlace"));
+			userService.update(user);
 			Map<String,String> result = Maps.newHashMap();
 			result.put("status","true");
 			result.put("sessionId", session.getId());
+			result.put("realName", user.getRealName());
 			result.put("role", user.getRoleList().get(0).getName());
 			return result;
 			
 		}
+	}
+	
+	@RequestMapping(value="/client/user/exit",method=RequestMethod.POST)
+	public @ResponseBody Map<String, String> logout(@RequestBody Map<String, String> param, HttpServletResponse response,HttpSession session){
+		User user = userService.find(User.class, (Integer)session.getAttribute("id"));
+		if(user==null){
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			Map<String, String> failureMessages = new HashMap<String, String>();
+			failureMessages.put("status", "false");
+			failureMessages.put("error", "参数错误");
+			return failureMessages;
+		}else{
+			user.setOnline(false);
+			userService.update(user);
+			session.invalidate();
+			return Collections.singletonMap("status", "true");
+		}
+		
 	}
 }
