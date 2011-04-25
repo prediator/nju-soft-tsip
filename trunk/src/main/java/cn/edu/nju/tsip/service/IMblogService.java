@@ -8,5 +8,6 @@ public interface IMblogService<T extends MBlog> extends IService<T> {
 	
 	public boolean delete(int mblogId,int userId);
 	public List<T> getMBlogs(int page);
+	public List<T> getAllMBlogs();
 
 }

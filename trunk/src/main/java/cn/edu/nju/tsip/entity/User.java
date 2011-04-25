@@ -99,6 +99,10 @@ public class User extends BaseEntity {
 	 */
 	@OneToMany(mappedBy="user",fetch = FetchType.LAZY)
 	private Set<Message_User> user2Messages = Sets.newHashSet();
+	
+	private boolean online = false;
+	
+	private String loginPlace;
 
 	public String getLoginName() {
 		return loginName;
@@ -194,6 +198,22 @@ public class User extends BaseEntity {
 
 	public void setPublishMsgs(Set<Message> publishMsgs) {
 		this.publishMsgs = publishMsgs;
+	}
+
+	public void setOnline(boolean online) {
+		this.online = online;
+	}
+
+	public boolean isOnline() {
+		return online;
+	}
+
+	public void setLoginPlace(String loginPlace) {
+		this.loginPlace = loginPlace;
+	}
+
+	public String getLoginPlace() {
+		return loginPlace;
 	}
 
 }

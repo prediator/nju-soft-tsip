@@ -57,7 +57,7 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value="/ajaxapi", method=RequestMethod.GET)
+	@RequestMapping(value="/ajax_api", method=RequestMethod.GET)
 	public String ajax_api() {
 		logger.info("Welcome home!");
 		return "ajax_api";

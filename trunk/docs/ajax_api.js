@@ -89,8 +89,7 @@
  var login = {
  	loginName:"ljj09",
  	password:"123",
- 	loginPlace:"xianlin",
- 	role:""//
+ 	loginPlace:"xianlin"
  }
  
  var result = {
@@ -121,6 +120,7 @@
  	status:"false"
  }
  //==========================================================
+ //============状态操作=======================================
  /**
   * 发布状态（微博）
   * 注意：微博的发布分成两种，1是原创的状态，2是转发的状态。转发的状态中，内容是对状态的评论
@@ -174,10 +174,12 @@
  var ask_get_mblog = {
  	id:123
  }
+ 
  var result_get_mblog = {
  	status:"false",
  	error:"参数错误"
  }
+ 
  var result_get_mblog = {
  		 status:"true",
  		 id:1324, 
@@ -204,8 +206,9 @@
  		             content:"what a great comment!",  //有子评论的评论
  		             createDate:"yyyy-mm-dd HH:mm:ss",
  		             author:{name:"jzh",
- 		                    id:1326},
- 		             cmntChilds:[{id:2329,
+ 		                    id:1326}
+ 		             
+ 		             /*cmntChilds:[{id:2329,
  		                           content:"a comment for the comment!",
  		                           createDate:"yyyy-mm-dd HH:mm:ss",
  		                           author:{name:"jzh",
@@ -215,8 +218,8 @@
  		                           createDate:"yyyy-mm-dd HH:mm:ss",
  		                           author:{name:"jzh",
  		                                   id:1326}}
- 		                           //...more comments
- 		                           ]
+ 		                           ...more comments*///子评论功能以去掉
+ 		            }]
  }
  
  /**
@@ -230,7 +233,7 @@
   * @type 
   */
  var ask_get_mblogs = {
- 	page:1//页数从1开始
+ 	//page:1页数从1开始,此功能已去掉
  }
  
  var get_mblogs = {
@@ -295,6 +298,19 @@
  		  //////////////////////////////////////////////////////////
  		//more 状态
  	]
+ }
+ 
+ var delete_mblog = {
+ 	id:123
+ }
+ 
+ var result_delete_mblog = {
+ 	status:"true"
+ }
+ 
+ var result_delete_mblog = {
+ 	status:"false",
+ 	error:"参数错误"
  }
  //==========================================================
  /**

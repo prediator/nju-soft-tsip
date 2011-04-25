@@ -43,5 +43,9 @@ public abstract class ServiceImpl<T extends BaseEntity> implements IService<T> {
 	public List<T> list(String hql, int firstResult, int maxSize,Object ...params){
 		return dao.list(hql, firstResult, maxSize, params);
 	}
+	
+	public void update(T baseBean){
+		dao.update(baseBean);
+	}
 
 }
