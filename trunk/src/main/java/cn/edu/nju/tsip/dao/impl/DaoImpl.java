@@ -43,19 +43,18 @@ public class DaoImpl<T> extends HibernateDaoSupport implements IDao<T> {
 		return ((Long) obj).intValue();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<T> list(String hql) {
-		return null;
+		return getHibernateTemplate().find(hql);
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<T> list(String hql, int firstResult, int maxSize,
-			Object... params) {
+	public List<T> list(String hql, int firstResult, int maxSize,Object... params) {
 		Query query = createQuery(hql);
 		for(int i = 0; params != null && i < params.length; i++){
 			query.setParameter(i, params[i]);
 		}
-		List<T> list = query.setFirstResult(firstResult).setMaxResults(maxSize).list();
-		return list;
+		return query.setFirstResult(firstResult).setMaxResults(maxSize).list();
 	}
 
 	public void save(T baseBean) {
