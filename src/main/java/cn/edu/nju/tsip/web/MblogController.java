@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-
 import cn.edu.nju.tsip.entity.Comment;
 import cn.edu.nju.tsip.entity.MBlog;
 import cn.edu.nju.tsip.entity.User;
@@ -89,17 +87,14 @@ public class MblogController {
 			mBlog.setFlwBlog(mblogService.find(MBlog.class,(Integer)param.get("flwMBlogId")));
 		}
 		mBlog.setPublisher(userService.find(User.class, (Integer)session.getAttribute("id")));
-		mblogService.create(mBlog);
-		return Collections.singletonMap("status", "true");
-		//**********************************************problem
-		/*Set<ConstraintViolation<MBlog>> failures = validator.validate(mBlog);
+		Set<ConstraintViolation<MBlog>> failures = validator.validate(mBlog);
 		if (!failures.isEmpty()) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return validationMessages(failures);
 		} else {
 			mblogService.create(mBlog);
 			return Collections.singletonMap("status", "true");
-		}*/
+		}
 	}
 	
 	@RequestMapping(value="/client/mblog/delete",method=RequestMethod.POST)

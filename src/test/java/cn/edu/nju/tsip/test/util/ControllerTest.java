@@ -3,9 +3,15 @@ package cn.edu.nju.tsip.test.util;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.FlushMode;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockServletContext;
+import org.springframework.orm.hibernate3.SessionFactoryUtils;
+import org.springframework.orm.hibernate3.SessionHolder;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 
@@ -31,6 +37,10 @@ public abstract class ControllerTest<T> extends TestCase{
         context.setServletContext(msc);  
         context.refresh();  
         msc.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, context);  
+        SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
+        Session session = SessionFactoryUtils.getSession(sessionFactory, true);
+        session.setFlushMode(FlushMode.COMMIT);
+        TransactionSynchronizationManager.bindResource(sessionFactory, new SessionHolder(session));
         controller = (T) context.getBean(getBeanName());
     } 
     
