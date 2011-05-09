@@ -1,11 +1,13 @@
 package cn.edu.nju.tsip.web;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
@@ -243,7 +245,27 @@ public class MblogController {
 		return Collections.singletonMap("mblogs",rList);
 	}
 	
-	
+	@RequestMapping(value="/client/mblog/addcomment",method=RequestMethod.POST)
+	public @ResponseBody Map<String, ? extends Object> addcomment(@RequestBody Map<String, ? extends Object> param, HttpServletResponse response, HttpServletRequest request,HttpSession session){
+		Comment comment = new Comment();
+		comment.setAuthor(userService.find(User.class, (Integer)session.getAttribute("id")));
+		comment.setAuthorIP(request.getRemoteAddr());
+		comment.setContent((String)param.get("content"));
+		comment.setCreateDate(new Date());
+		MBlog mBlog = mblogService.find(MBlog.class, (Integer)param.get("id"));
+		if(mBlog!=null){
+			mBlog.getComments().add(comment);
+			mblogService.update(mBlog);
+			return Collections.singletonMap("status","true");
+		}else{
+			return Collections.singletonMap("status","false");
+		}
+		
+		//------------------------problem---------------------------
+		//update strategy
+		
+		
+	}
 	
 	private Map<String, String> validationMessages(Set<ConstraintViolation<MBlog>> failures) {
 		Map<String, String> failureMessages = new HashMap<String, String>();
