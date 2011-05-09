@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+/**
+ * 拦截器将没有登录的用户过滤，拦截器只能拦截包含client的url
+ * @author ljj
+ *
+ */
 public class ClientLoginInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 		System.out.println(request.getSession().getId());

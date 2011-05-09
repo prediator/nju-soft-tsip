@@ -73,6 +73,8 @@
  * 曾加发微博的api
  * 注意中 增加第7条
  * 增加 聊天接口
+ * 聊天api进行较多改变，对写完的api补上了url
+ * 为可评论的东西增加评论功能，包括状态，日志，相册
  * ------------------------------------------
  * @author leung jianjun
  */
@@ -180,6 +182,10 @@
  	error:"参数错误"
  }
  
+ /**
+  * 没有comment时显示comments[]
+  * @type 
+  */
  var result_get_mblog = {
  		 status:"true",
  		 id:1324, 
@@ -300,6 +306,11 @@
  	]
  }
  
+ /**
+  * 
+  * url:/client/mblog/delete
+  * @type 
+  */
  var delete_mblog = {
  	id:123
  }
@@ -318,6 +329,10 @@
   * 注意：1 文章分为自己可见的和他人可见的，当然你可以无视这个功能
   * 	 2 发布文章中包含分享文章，分享的文章可以写一下你分享的理由,分享的文章的title里放分享的理由，而content为空
   * 	 3 首次发布的文章的更新时间是发布时间，而对文章做更改时，就会改成最近一次的修改时间
+  * 	 4 文章中默认有一个uncategory分类，当然用户可以删除这个分类
+  * 	 5 删除分类会把分类所包含的文章一同删除
+  * 
+  * url:/client/article/add
   * @type 
   */
  var pulish_article = {//发布原创文章
@@ -344,6 +359,10 @@
  	shareArticleId:12312//分享的文章的id
  }
  
+ /**
+  * url: /client/category/add
+  * @type 
+  */
  var add_category = {
  	name:"technie"
  }
@@ -357,6 +376,10 @@
  	error:"参数错误"
  }
  
+ /**
+  * url:/client/category/delete
+  * @type 
+  */
  var delete_category = {
  	name:"technie"
  }
@@ -364,6 +387,7 @@
  /**
   * 删除文章
   * 注意：会判断是否是你的文章
+  * url:/client/article/delete
   * @type 
   */
  var delete_article = {
@@ -391,14 +415,29 @@
   *      
   * @type 
   */
+ /**
+  * url:/client/letter/add
+  * @type 
+  */
  var send_content = {
- 	receiverId:12323,
+ 	otherId:12323,
  	content:"hi,i am mary"
  }
  
+ var result_send_content = {
+ 	status:"true"
+ }//这里只表明收到
+
+ /**
+  * url:/client/letter/getall
+  * @type 
+  */
+ var receive_content ={
+ 	
+ }
  
- var receive_content = {//论询api，论询间隔时间策略由客户端定义
- 	messageList:[
+ var result_receive_content = {//论询api，论询间隔时间策略由客户端定义
+ 	messages:[
  				{senderId:12313,
  				 name:"ljj",
  				 content:"yes i know you",
@@ -408,6 +447,50 @@
  	]
  }
  
+ /**
+  * 只获取一个人的聊天内容
+  * url :/client/letter/getone
+  * @type 
+  */
+ var receive_one_content = {
+ 	otherID:1234
+ }
+ 
+ var result_receive_one_content = {
+ 	name:"ljj",
+ 	messages:[{content:"",createDate:""}]
+ }
+ 
+ var get_latest_content = {
+ 	otherId:12312,
+ 	num:10
+ }
+ 
+ var result_latest_content = {
+ 	contents:[
+ 	{},
+ 	{},
+ 	{}
+ 	//more ...
+ 	]
+ }
+ 
+ /**
+  * url：/client/user/getOnline
+  * @type 
+  */
+ var get_online_user = {
+ 	
+ }
+ 
+ var result_get_online_user = {
+ 	users:[{name:ljj,
+ 			id:3243,
+ 			role:"stuent",
+ 			loginPlace:"仙林"},//如果登录用户不知丁，则显示unknown
+ 		   {},
+ 		   {}]
+ }
  
  //===========================================================
  var get_user_list = {
@@ -441,10 +524,6 @@
  //===========================================================
  
  //===========================================================
- 
- 
- 
- 
  
  
  

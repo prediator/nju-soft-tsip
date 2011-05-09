@@ -1,5 +1,7 @@
 package cn.edu.nju.tsip.service;
 
+import java.util.List;
+
 import cn.edu.nju.tsip.entity.Role;
 import cn.edu.nju.tsip.entity.User;
 
@@ -15,5 +17,7 @@ public interface IUserService<T extends User> extends IService<T> {
 	public boolean createRole(String name);
 	
 	public  Role getRole(String name);
+	
+	public List<T> getOnlineUsers();
 
 }

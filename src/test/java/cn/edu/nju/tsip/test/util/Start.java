@@ -9,9 +9,6 @@ public class Start {
 	public static final String CONTEXT = "";
 
 	public static void main(String[] args) throws Exception {
-		//Initialize the database which use to test
-		
-		//Start the server
 		Server server = Start.buildNormalServer(PORT, CONTEXT);
 		server.start();
 		System.out.println("===================================");

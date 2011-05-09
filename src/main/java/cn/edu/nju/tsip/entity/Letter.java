@@ -39,7 +39,7 @@ public class Letter extends BaseEntity {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date createDate;
 	
-	private boolean readed;
+	private boolean readed = false;
 
 	public User getSender() {
 		return sender;
