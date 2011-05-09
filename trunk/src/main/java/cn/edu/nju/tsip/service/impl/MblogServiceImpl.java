@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.edu.nju.tsip.entity.MBlog;
-import cn.edu.nju.tsip.entity.User;
 import cn.edu.nju.tsip.service.IMblogService;
 
 @Service("mblogService")
@@ -42,7 +41,7 @@ public class MblogServiceImpl<T extends MBlog> extends ServiceImpl<T> implements
 	}
 
 	public List<T> getAllMBlogs() {
-		return dao.list("from MBlog as mblog where mblog.deleted = false");
+		return dao.list("from MBlog as mblog where mblog.deleted = false", 0, 50);
 	}
 
 }

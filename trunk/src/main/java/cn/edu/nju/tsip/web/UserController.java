@@ -84,9 +84,9 @@ public class UserController {
 			failureMessages.put("error", "参数错误");
 			return failureMessages;
 		}else{
-			user.setOnline(false);
+			user.setOnline(false);//更新数据库
 			userService.update(user);
-			session.invalidate();
+			session.invalidate();//session销毁
 			return Collections.singletonMap("status", "true");
 		}
 		

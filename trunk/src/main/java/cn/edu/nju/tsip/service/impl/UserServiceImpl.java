@@ -1,5 +1,7 @@
 package cn.edu.nju.tsip.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,6 +55,11 @@ public class UserServiceImpl<T extends User> extends ServiceImpl<T> implements I
 
 	public Role getRole(String name) {
 		return roleDao.findUniqueBy("from Role as role where role.name =?", name);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<T> getOnlineUsers() {
+		return dao.createQuery("from User as user where user.online = true").list();
 	}
 
 }

@@ -205,8 +205,6 @@ public class MblogController {
 		return result;
 	}
 	
-	
-	
 	@RequestMapping(value="/client/mblog/getAll",method=RequestMethod.POST)
 	public @ResponseBody Map<String, ? extends Object> getMBlogs(@RequestBody Map<String, ? extends Object> param, HttpServletResponse response,HttpSession session){
 		logger.info("client get MBlog");

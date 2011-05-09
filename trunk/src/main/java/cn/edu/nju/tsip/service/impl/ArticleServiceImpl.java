@@ -12,8 +12,7 @@ public class ArticleServiceImpl<T extends Article> extends ServiceImpl<T> implem
 
 	@Override
 	public void create(T baseBean) {
-		// TODO Auto-generated method stub
-		
+		dao.persist(baseBean);
 	}
 
 	@Override
