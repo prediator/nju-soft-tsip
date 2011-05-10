@@ -19,5 +19,7 @@ public interface IUserService<T extends User> extends IService<T> {
 	public  Role getRole(String name);
 	
 	public List<T> getOnlineUsers();
+	
+	public List<T> getAllUsers();
 
 }

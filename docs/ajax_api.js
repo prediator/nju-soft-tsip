@@ -537,8 +537,18 @@
  	error:"错误说明"
  }
  
+ var get_file_list = {
+ 	files:[{name:"exampe.txt",createDate:"",url:"http://123.2342.423.324/asdf/sadfsda/dafsa/example.txt",description:"无",publisheId:123,publisherName:"ljj"},
+ 			{}
+ 			// more ...]
+ }
+ 
  //===========================================================
  //==========================用户相关操作=======================
+ /**
+  * url:/client/user/getAll
+  * @type 
+  */
  var get_user_list = {
  	studentList:[
  				{id:123,realname:"ljj"},

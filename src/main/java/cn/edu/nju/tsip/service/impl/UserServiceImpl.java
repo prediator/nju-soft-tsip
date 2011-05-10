@@ -62,4 +62,9 @@ public class UserServiceImpl<T extends User> extends ServiceImpl<T> implements I
 		return dao.createQuery("from User as user where user.online = true").list();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<T> getAllUsers() {
+		return dao.createQuery("from User as user").list();
+	}
+
 }

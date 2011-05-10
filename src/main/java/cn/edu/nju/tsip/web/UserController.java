@@ -2,6 +2,7 @@ package cn.edu.nju.tsip.web;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import cn.edu.nju.tsip.entity.User;
@@ -72,6 +74,19 @@ public class UserController {
 			return result;
 			
 		}
+	}
+	
+	@RequestMapping(value="/client/user/getAll",method=RequestMethod.POST)
+	public @ResponseBody Map<String, String> getUsers(@RequestBody Map<String, String> param, HttpServletResponse response,HttpSession session){
+		logger.info("client get all user ");
+		Map<String,String> result = Maps.newHashMap();
+		List<User> studentList = Lists.newArrayList();
+		List<User> teacherList = Lists.newArrayList();
+		List<User> counsellorList = Lists.newArrayList();
+		List<User> adminList = Lists.newArrayList();
+		List<User> leaderList = Lists.newArrayList();
+		
+		return result;
 	}
 	
 	@RequestMapping(value="/client/user/exit",method=RequestMethod.POST)
