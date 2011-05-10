@@ -39,7 +39,7 @@ public class UploadFile extends BaseEntity {
 		return name;
 	}
 
-	public void setNameString(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
