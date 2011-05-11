@@ -559,6 +559,7 @@
  /**
   * 注意：1.文件上传时，要用post把文件post出去，其中参数是file，值是文件内容，可以使用多个（目前不支持）
   * 	 2.文件描述功能取消 
+  * url:/client/file/save/{fileName}
   * @type 
   */
  var file_upload = {//已取消
@@ -588,28 +589,28 @@
   */
  var get_user_list = {
  	studentList:[
- 				{id:123,realname:"ljj"},
- 				{id:123,realname:"lhh"}
+ 				{id:123,realName:"ljj"},
+ 				{id:123,realName:"lhh"}
  				//more ... 
  	],
  	teacherList:[
- 				{id:123,realname:"ljj"},
- 				{id:123,realname:"lhh"}
+ 				{id:123,realName:"ljj"},
+ 				{id:123,realName:"lhh"}
  				//more ...
  	],
  	counsellorList:[
- 				{id:123,realname:"ljj"},
- 				{id:123,realname:"lhh"}
+ 				{id:123,realName:"ljj"},
+ 				{id:123,realName:"lhh"}
  				//more ...
  	],
  	adminList:[
- 				{id:123,realname:"ljj"},
- 				{id:123,realname:"lhh"}
+ 				{id:123,realName:"ljj"},
+ 				{id:123,realName:"lhh"}
  				//more ...
  	],
  	leaderList:[
- 				{id:123,realname:"ljj"},
- 				{id:123,realname:"lhh"}
+ 				{id:123,realName:"ljj"},
+ 				{id:123,realName:"lhh"}
  				//more ...
  	]
  	
