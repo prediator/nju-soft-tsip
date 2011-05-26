@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Validator;
@@ -53,7 +54,7 @@ public class UserController {
 	
 	@RequestMapping(value="/client/user/login",method=RequestMethod.POST)
 	public @ResponseBody Map<String, String> login(@RequestBody Map<String, String> param, HttpServletResponse response,HttpSession session){
-		logger.info("client login: "+param.get("loginName"));
+		logger.info("client login: "+param.get("loginName")+", sessionid:"+session.getId());
 		User user = userService.getUser(param.get("loginName"), param.get("password"));
 		if(user == null){
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -77,15 +78,43 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/client/user/getAll",method=RequestMethod.POST)
-	public @ResponseBody Map<String, String> getUsers(@RequestBody Map<String, String> param, HttpServletResponse response,HttpSession session){
+	public @ResponseBody Map<String, ? extends Object> getUsers(@RequestBody Map<String, String> param, HttpServletResponse response,HttpSession session){
 		logger.info("client get all user ");
-		Map<String,String> result = Maps.newHashMap();
-		List<User> studentList = Lists.newArrayList();
-		List<User> teacherList = Lists.newArrayList();
-		List<User> counsellorList = Lists.newArrayList();
-		List<User> adminList = Lists.newArrayList();
-		List<User> leaderList = Lists.newArrayList();
-		
+		Map<String,Object> result = Maps.newHashMap();
+		List<Map<String, Object>> studentList = Lists.newArrayList();
+		List<Map<String, Object>> teacherList = Lists.newArrayList();
+		List<Map<String, Object>> counsellorList = Lists.newArrayList();
+		List<Map<String, Object>> adminList = Lists.newArrayList();
+		List<Map<String, Object>> leaderList = Lists.newArrayList();
+		for(User user:userService.getAllUsers()){
+			char role = user.getRoleList().get(0).getName().charAt(0);
+			Map<String, Object> map = Maps.newHashMap();
+			map.put("id", user.getId());
+			map.put("realName", user.getRealName());
+			switch (role) {
+			case 's':
+				studentList.add(map);
+				break;
+			
+			case 't':
+				teacherList.add(map);
+				break;
+			case 'c':
+				counsellorList.add(map);
+				break;
+			case 'a':
+				adminList.add(map);
+				break;
+			case 'l':
+				leaderList.add(map);
+				break;
+			}
+		}
+		result.put("studentList", studentList);
+		result.put("teacherList",teacherList);
+		result.put("counsellorList", counsellorList);
+		result.put("adminList", adminList);
+		result.put("leaderList", leaderList);
 		return result;
 	}
 	

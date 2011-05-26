@@ -11,5 +11,7 @@ public interface ILetterService<T extends Letter> extends IService<T> {
 	public List<T> getUnreadedLetters(int senderId,int receiverId);
 	
 	public List<T> getUnreadedLetters(int receiverId);
+	
+	public List<T> getLatestLetters(int receiverId,int senderId,int start,int end);
 
 }

@@ -1,5 +1,7 @@
 package cn.edu.nju.tsip.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +21,10 @@ public class ArticleServiceImpl<T extends Article> extends ServiceImpl<T> implem
 	public void delete(T baseBean) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public List<T> getArticles(int start, int end) {
+		return dao.list("form Article as article order by article.createDate desc", start, end - start+1);
 	}
 
 }

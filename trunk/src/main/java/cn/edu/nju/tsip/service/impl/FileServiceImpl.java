@@ -1,5 +1,7 @@
 package cn.edu.nju.tsip.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +22,10 @@ public class FileServiceImpl<T extends UploadFile> extends ServiceImpl<T> implem
 	public void delete(T baseBean) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public List<T> getFiles() {
+		return dao.list("from UploadFile as file order by file.createDate desc");
 	}
 
 }

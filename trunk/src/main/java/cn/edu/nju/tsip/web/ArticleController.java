@@ -2,6 +2,7 @@ package cn.edu.nju.tsip.web;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import cn.edu.nju.tsip.entity.Article;
 import cn.edu.nju.tsip.entity.Category;
@@ -121,6 +125,26 @@ public class ArticleController {
 		}else{
 			return  Collections.singletonMap("status", "false");
 		}
+	}
+	
+	@RequestMapping(value="/client/article/getall",method=RequestMethod.POST)
+	public @ResponseBody Map<String, String> getArticles(@RequestBody Map<String, Object> param, HttpServletResponse response,HttpSession session){
+		List<Article> articles = articleService.getArticles((Integer)param.get("start"), (Integer)param.get("end"));
+		List<Map<String, Object>> contents = Lists.newArrayList();
+		for(Article article:articles){
+			Map<String, Object> aMap = Maps.newHashMap();
+			aMap.put("id", article.getId());
+			aMap.put("title", article.getTitle());
+			aMap.put("createDate", article.getCreateDate());
+			aMap.put("updateDate", article.getUpdateDate());
+			aMap.put("publisherId", article.getPublisher().getId());
+			aMap.put("publisherName", article.getPublisher().getRealName());
+			String content = article.getContent();
+			aMap.put("content", content.substring(0, (content.length()>50?50:content.length())));
+			
+			contents.add(aMap);
+		}
+		return null;
 	}
 	
 	private Map<String, String> validationMessages(Set<ConstraintViolation<Article>> failures) {

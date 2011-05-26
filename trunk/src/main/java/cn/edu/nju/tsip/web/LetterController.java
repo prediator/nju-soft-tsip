@@ -2,7 +2,6 @@ package cn.edu.nju.tsip.web;
 
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -92,7 +91,7 @@ public class LetterController {
 	}
 	
 	@RequestMapping(value="/client/letter/getall",method=RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getallLetter(@RequestBody Map<String, ? extends Object> param, HttpServletResponse response,HttpSession session){
+	public @ResponseBody Map<String, Object> getAllLetter(@RequestBody Map<String, ? extends Object> param, HttpServletResponse response,HttpSession session){
 		logger.info("client get letter");
 		List<Letter> letters = letterService.getUnreadedLetters((Integer)session.getAttribute("id"));
 		List<String> contents = Lists.newArrayList();
@@ -118,6 +117,20 @@ public class LetterController {
 			contents.add(tempResult);
 		}
 		return Collections.singletonMap("users",contents);
+	}
+	
+	@RequestMapping(value="/client/leter/getlatest",method=RequestMethod.POST)
+	public @ResponseBody Map<String,? extends Object> getLatestRecord(@RequestBody Map<String, ? extends Object> param, HttpServletResponse response,HttpSession session){
+		List<Letter> letters = letterService.getLatestLetters((Integer)session.getAttribute("id"), (Integer)param.get("otherId"),(Integer) param.get("start"),(Integer) param.get("end"));
+		List<String> contents = Lists.newArrayList();
+		for(Letter letter:letters){
+			contents.add("{\"content\":\""+letter.getContent()+"\",\"createDate\":\""+letter.getCreateDate()+"\",\"speakerId\":"+letter.getSender().getId()+",\"receiverId\":"+letter.getReceiver().getId()+"}");
+		}
+		Map<String, Object> result = Maps.newHashMap();
+		result.put("name", userService.find(User.class, (Integer)param.get("otherId")));
+		result.put("contents", contents);
+		return result;
+		
 	}
 
 }

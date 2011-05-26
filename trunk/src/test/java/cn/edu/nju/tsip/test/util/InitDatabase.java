@@ -25,12 +25,14 @@ public class InitDatabase {
 	IMblogService<MBlog> mblogService;
 	ICommentService<Comment> commentService;
 	IStudentService<Student> studentService;
+	ILetterService<Letter> letterService;
 	
-	public InitDatabase(IUserService<User> userService,IMblogService<MBlog> mblogService,ICommentService<Comment> commentService,IStudentService<Student> studentService){
+	public InitDatabase(IUserService<User> userService,IMblogService<MBlog> mblogService,ICommentService<Comment> commentService,IStudentService<Student> studentService,ILetterService<Letter> letterService){
 		this.userService = userService;
 		this.mblogService = mblogService;
 		this.commentService = commentService;
 		this.studentService = studentService;
+		this.letterService = letterService;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -46,12 +48,53 @@ public class InitDatabase {
         mblogService = (IMblogService<MBlog>) context.getBean("mblogService");
         commentService = (ICommentService<Comment>) context.getBean("commentService");
         studentService = (IStudentService<Student>) context.getBean("studentService");
+        letterService = (ILetterService<Letter>) context.getBean("letterService");
 	}
 	
 	public void init() throws Exception{
 		initRoleList();
 		initStudent();
 		initMBlog();
+		initLetter();
+	}
+
+	private void initLetter() throws Exception{
+		String path = Thread.currentThread().getContextClassLoader().getResource("letter.txt").getPath();
+		File file = new File(path);
+		FileReader fr = new FileReader(file);
+		BufferedReader br = new BufferedReader(fr);
+		String line;
+		Date date = new Date();
+		for(int i =1;i<=22;i++){
+			for(int k =i+1;k<=22;k++){
+				int counter = 0;
+				User user1 = userService.find(User.class, i);
+				User user2 = userService.find(User.class,k);
+				while(((line = br.readLine()) != null) && (counter < 60)){
+					if(line.isEmpty())
+						continue;
+					Letter letter = new Letter();
+					letter.setContent(line);
+					letter.setReaded(true);
+					letter.setCreateDate(new Date(date.getTime()+counter*1000*10));
+					if(counter%2==0){
+						letter.setSender(user1);
+						letter.setReceiver(user2);
+					}else{
+						letter.setSender(user2);
+						letter.setReceiver(user1);
+					}
+					try{
+						letterService.create(letter);
+					}catch (Exception e) {
+						counter--;
+					}finally{
+						
+					}
+					counter++;
+				}
+			}
+		}
 	}
 
 	public static void main(String[] args) throws Exception {
