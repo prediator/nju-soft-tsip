@@ -727,17 +727,19 @@ var share_album = {
 }
 
 var result_share_album = {
-	
+	status:"true"
 }
 
 var result_share_album = {
-	
+	status:"false",
+	error:""
 }
 
-var add_picture = {
-	
-}
-
+/**
+ * 注意：1 相册没有名字，相册的名字就是相册的描述
+ * url:/client/picture/upload/{albumName}/{descrip}
+ * @type 
+ */
 var result_add_picture = {
 	
 }
@@ -755,6 +757,18 @@ var result_delete_picture = {
 }
 
 var result_delete_picture = {
+	
+}
+
+var get_my_album_list = {
+	
+}
+
+var get_album_list = {
+	
+}
+
+var get_picture_list = {
 	
 }
 
