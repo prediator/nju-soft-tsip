@@ -446,7 +446,7 @@
   * 文章10            ||||||||||||
   * 文章11            ||||||||||||
   * 文章12            | start:1
-  * 文章13            | sed:5
+  * 文章13            | end:5
   * 文章14            |
   * 文章15（最新的）    |||||||||||||
   * @type5 
@@ -464,6 +464,26 @@
  	articles:[{id:123,title:"my holiday",createDate:"",updateDate:"",publisherId:123,publisherName:"ljj",content:"... about 50 words... ",shareArticleId:232},
  	          {}]
  }
+ 
+ var get_article_detail = {
+ 	
+ }
+ 
+ var result_get_article_detail = {
+ 	id:123,
+ 	title:"",
+ 	content:"",
+ 	createDate:"",
+ 	publisherId:"",
+ 	updateDate:"",
+ 	categoryName:"",
+ 	comments:[]
+ }
+ 
+ var change_article_detail = {
+ 	
+ }
+ 
  //==========================================================
  /**
   * 聊天的api
@@ -523,14 +543,20 @@
  	messages:[{content:"",createDate:""}]
  }
  
+ /**
+  * 这个获取最近的聊天记录，包括你看过和没看过的
+  * @type 
+  */
  var get_latest_content = {
  	otherId:12312,
- 	num:10
+ 	start:0,
+ 	end:19//获取最新的20条聊天记录
  }
  
  var result_latest_content = {
+ 	name:"ljj",
  	contents:[
- 	{},
+ 	{content:"",createDate:"",speakerId:123,receiverId:234},//本人说的为真，对方说的为假
  	{},
  	{}
  	//more ...
@@ -574,13 +600,34 @@
  	status:"false",
  	error:"错误说明"
  }
- 
+ /**
+  * 注意：1.下载地址只给出相对地址，要在前面加上http://2334.34.343.34
+  * 	 2.下载直接用get方法即可
+  * url : /client/file/getAll
+  * @type 
+  */
  var get_file_list = {
- 	files:[{name:"exampe.txt",createDate:"",url:"/upload/12/2011-05/example.txt",description:"无",publisheId:123,publisherName:"ljj"},
+ 	files:[{id:12132,name:"exampe.txt",createDate:"",url:"/upload/12/2011-05/example.txt",description:"无",publisheId:123,publisherName:"ljj"},
  			{}
  			// more ...]
  }
  
+ /**
+  * url /client/file/delete/{fileId}
+  * @type 
+  */
+ var delete_file = {
+ 	id:1232
+ }
+ 
+ var result_delete_file = {
+ 	status:"true"
+ }
+ 
+ var result_delete_file = {
+ 	status:"false",
+ 	error:"该文件不属于你"
+ }
  //===========================================================
  //==========================用户相关操作=======================
  /**
@@ -616,10 +663,103 @@
  	
  }
  //===========================================================
- 
+ //================相册相关操作=================================
+ /**
+  * 注意：1，相册没有描述，相册的名称就是对相册的描述
+  * 	 2，相册的名字必须是唯一的
+  * @type 
+  */
+var add_album = {
+	name:"Friend"
+}
+
+var result_add_album = {
+	status:"true"
+}
+
+var result_add_album = {
+	error:"相册名重复",
+	status:"false"
+}
+
+/**
+ * url:/client/album/delete
+ * @type 
+ */
+var delete_album = {
+	albumName:"friend"
+}
+
+var result_delete_album = {
+	status:"true"
+}
+
+var result_delete_album = {
+	status:"false",
+	error:"不存在该相册"
+}
+
+/**
+ * url:/client/album/rename
+ * @type 
+ */
+var album_rename = {
+	oldName:"frend",
+	newName:"dafdsa"
+}
+
+var result_album_rename = {
+	status:"true"
+}
+
+var result_album_rename = {
+	status:"false",
+	error:"相册名重复"
+}
+
+/**
+ * url:/client/album/share
+ * @type 
+ */
+var share_album = {
+	id:123,
+	shareReason:"good thing!"
+}
+
+var result_share_album = {
+	
+}
+
+var result_share_album = {
+	
+}
+
+var add_picture = {
+	
+}
+
+var result_add_picture = {
+	
+}
+
+var result_add_picture = {
+	
+}
+
+var delete_picture = {
+	
+}
+
+var result_delete_picture = {
+	
+}
+
+var result_delete_picture = {
+	
+}
+
+
  //===========================================================
- 
- 
  
  
  

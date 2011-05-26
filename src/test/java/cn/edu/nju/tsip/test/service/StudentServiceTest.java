@@ -44,7 +44,7 @@ public class StudentServiceTest {
 	
 	@Test
 	public void iniTest() throws Exception{
-		InitDatabase initDatabase = new InitDatabase(userService,mblogService,null,studentService);
+		InitDatabase initDatabase = new InitDatabase(userService,mblogService,null,studentService,null);
 		initDatabase.init();
 	}
 

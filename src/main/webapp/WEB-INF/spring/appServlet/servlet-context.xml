@@ -17,6 +17,9 @@
 	<!-- Handles HTTP GET requests for /upload/** by efficiently serving up static resources in the ${webappRoot}/upload directory -->
 	<resources mapping="/upload/**" location="/upload/" />
 	
+	<!-- Handles HTTP GET requests for /images/** by efficiently serving up static resources in the ${webappRoot}/upload directory -->
+	<resources mapping="/images/**" location="/images/" />
+	
 	<!-- Handles HTTP GET requests for /common/** by efficiently serving up static resources in the ${webappRoot}/upload directory -->
 	<resources mapping="/common/**" location="/common/" />
 	

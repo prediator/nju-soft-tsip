@@ -3,6 +3,7 @@ package cn.edu.nju.tsip.entity;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class UploadFile extends BaseEntity {
@@ -33,6 +34,7 @@ public class UploadFile extends BaseEntity {
 	 */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn
+	@NotNull
 	private User publisher;
 
 	public String getName() {

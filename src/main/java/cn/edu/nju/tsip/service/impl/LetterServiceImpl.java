@@ -38,5 +38,11 @@ public class LetterServiceImpl<T extends Letter> extends ServiceImpl<T> implemen
 		return dao.createQuery("from Letter as letter where letter.receiver.id = :rid and letter.readed = false")
 			.setParameter("rid", receiverId).list();
 	}
+	
+	public List<T> getLatestLetters(int receiverId,int senderId,int start,int end){
+		return dao.list("from Letter as letter where (letter.sender.id =? and letter.receiver.id =?) or (letter.sender.id =? and letter.receiver.id =?) order by letter.createDate desc", start, end-start +1, 
+				receiverId,senderId,senderId,receiverId);
+		
+	}
 
 }

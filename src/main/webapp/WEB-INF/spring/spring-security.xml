@@ -14,6 +14,7 @@
 		<s:intercept-url pattern="/resources/**" filters="none" />
 		<s:intercept-url pattern="/upload/**" filters="none" />
 		<s:intercept-url pattern="/common/**" filters="none" />
+		<s:intercept-url pattern="/images/**" filters="none" />
 		<s:intercept-url pattern="/client/**" filters="none"/>
 		<s:intercept-url pattern="/ajax_api" filters="none"/>
 		<s:intercept-url pattern="/" access="hasAnyRole('ROLE_修改用户')" />

@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.google.common.collect.Sets;
+
 @Entity
 public class Album extends BaseEntity {
 	
@@ -35,7 +37,7 @@ public class Album extends BaseEntity {
 	 */
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn
-	private Set<Picture> pictures;
+	private Set<Picture> pictures = Sets.newHashSet();
 	
 	/**
 	 * 如果是分享别人的相册，则此处不为空，评论为空；同时<code>shareAlbum</code>指向分享的album
