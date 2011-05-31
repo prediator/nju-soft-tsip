@@ -760,17 +760,65 @@ var result_delete_picture = {
 	
 }
 
+/**
+ * url:/client/album/getMy
+ * @type 
+ */
 var get_my_album_list = {
 	
 }
 
-var get_album_list = {
-	
+var result_get_my_album_list = {
+	albums:[{id:123,name:"",createDate:"",cover:"url的相对地址"},
+			{id:123,name:"",createDate:"",cover:"url的相对地址"}
+			//...
+			]
 }
 
-var get_picture_list = {
-	
+/**
+ * url:/client/album/get
+ * @type 
+ */
+var get_album_list = {
+	userId:123	
 }
+
+var result_get_album_list = {
+	albums:[{id:123,name:"",createDate:"",cover:"url的相对地址"},
+			{id:123,name:"",createDate:"",cover:"url的相对地址"}
+			//...
+			]
+}
+
+/**
+ * url:/client/album/detail
+ * @type 
+ */
+var get_album_detail = {
+	id:123
+}
+
+var result_album_detail = {
+	name:"",
+	ownerId:123,
+	createDate:"",
+	cover:"",
+	pictures:[{id:123,description:"",url:"",createDate:""},
+			  {}]
+}
+
+var get_picture_detail = {
+	id:123
+}
+
+var result_get_picture_detail = {
+	description:"",
+	url:"",
+	createDate:"",
+	comments:[]
+}
+
+
 
 
  //===========================================================
