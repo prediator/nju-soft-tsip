@@ -77,7 +77,7 @@ public class FileController {
 		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM");
 		String path = session.getAttribute("id")+"/"+dateformat.format(date);
 		String fileName = prefix+"."+postfix;
-		System.out.println(request.getSession().getServletContext().getRealPath("upload")+"/"+path+"/"+fileName);
+		//System.out.println(request.getSession().getServletContext().getRealPath("upload")+"/"+path+"/"+fileName);
 		File targetFile = new File(request.getSession().getServletContext().getRealPath("upload")+"/"+path, fileName);
 		if (!targetFile.exists()) {
 			targetFile.mkdirs();
