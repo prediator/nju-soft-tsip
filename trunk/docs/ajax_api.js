@@ -835,6 +835,11 @@ var result_get_picture_detail = {
  * 		
  * @type 
  */
+
+/**
+ * url:/client/message/create
+ * @type 
+ */
 var publisth_message_tosome = {
 	receivers:[{id:123},
 		       {id:124}
