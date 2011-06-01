@@ -80,6 +80,9 @@
  * 增加获取文章api
  * 获取用户列表api
  * ------------------------------------------
+ * update8:
+ * 更新通知相关操作的api
+ * -------------------------------------------
  * @author leung jianjun
  */
  
@@ -898,4 +901,32 @@ var result_get_my_publish_message_detail = {//你发布的message能获得更多
 	receivers:[{id:123,name:"梁建均",readed:true},
 				{id:133,name:"李浩寰",readed:false}
 	]
+}
+
+var get_all_message = {//接受收到的信息
+	
+}
+
+var result_get_all_message = {
+	messages:[{id:123,title:"",readed:true,publisherId:123,publisherName:"高羽祥"},//这只是个预览而已，要看详细的信息就要点进去，获取detail
+			  {id:123,title:"",readed:false,publisherId:123,publisherName:"高羽祥"}
+	]
+}
+
+var get_all_unreaded_message = {
+	
+}
+
+var result_get_all_unreaded_message = {
+	messages:[{id:123,title:"",publisherId:123,publisherName:"高羽祥"},//这只是个预览而已，要看详细的信息就要点进去，获取detail
+			  {id:123,title:"",publisherId:123,publisherName:"高羽祥"}
+	]
+}
+
+var get_message_detail = {//一旦发送这个请求，message将标为已读
+	id:13
+}
+
+var result_get_message_detail = {
+	
 }
