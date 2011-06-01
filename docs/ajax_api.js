@@ -908,6 +908,10 @@ var result_get_my_publish_message_list = {
 	]
 }
 
+/**
+ * url:/client/message/detailMy
+ * @type 
+ */
 var get_my_publish_message_detail = {//你发布的message能获得更多的detail
 	id:123
 }
@@ -920,10 +924,6 @@ var result_get_my_publish_message_detail = {//你发布的message能获得更多
 	]
 }
 
-/**
- * url:/client/message/detailMy
- * @type 
- */
 var get_all_message = {//接受收到的信息
 	
 }
