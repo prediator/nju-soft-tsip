@@ -877,6 +877,10 @@ var result_publisher_message_tostudent = {
 	error:"..."
 }
 
+/**
+ * url:
+ * @type 
+ */
 var  publisher_message_group = {//把消息发送给我的某个分组的所有人，要等个人信息的api完成才能写
 	
 }
@@ -890,6 +894,10 @@ var result_publisher_message_group = {
 	error:"..."
 }
 
+/**
+ * url:/client/message/getMy
+ * @type 
+ */
 var get_my_publish_message_list = {
 	
 }
@@ -912,9 +920,14 @@ var result_get_my_publish_message_detail = {//你发布的message能获得更多
 	]
 }
 
+/**
+ * url:/client/message/detailMy
+ * @type 
+ */
 var get_all_message = {//接受收到的信息
 	
 }
+
 
 var result_get_all_message = {
 	messages:[{id:123,title:"",readed:true,publisherId:123,publisherName:"高羽祥"},//这只是个预览而已，要看详细的信息就要点进去，获取detail
