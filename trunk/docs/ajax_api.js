@@ -807,6 +807,10 @@ var result_album_detail = {
 			  {}]
 }
 
+/**
+ * url:/client/picture/detail
+ * @type 
+ */
 var get_picture_detail = {
 	id:123
 }
@@ -822,6 +826,56 @@ var result_get_picture_detail = {
 
 
  //===========================================================
- 
+ //============通知相关操作=====================================
+/**
+ * 注意：1.只有老师或辅导员才有发通知的权利，学生只能接收，老师，辅导员之间可以相互发通知
+ * 		
+ * @type 
+ */
+var publisth_message_tosome = {
+	receivers:[{id:123},
+		       {id:124}
+		       
+		       //more
+		       
+		       ],
+	title:"关于放寒假的通知",
+	content:"寒假将要到来，清同学注意。。。"
+}
+
+var result_publisth_message_tosome = {
+	status:"true"
+}
+
+var result_publisth_message_tosome = {
+	status:"false",
+	error:"..."
+}
+
+var publisher_message_tostudent = {//把消息发送给所有学生
+	
+}
+
+var result_publisher_message_tostudent = {
+	status:"true"
+}
+
+var result_publisher_message_tostudent = {
+	status:"false",
+	error:"..."
+}
+
+var  publisher_message_group = {//把消息发送给我的某个分组的所有人，要等个人信息的api完成才能写
+	
+}
+
+var result_publisher_message_group = {
+	status:"true"
+}
+
+var result_publisher_message_group = {
+	status:"false",
+	error:"..."
+}
  
  
