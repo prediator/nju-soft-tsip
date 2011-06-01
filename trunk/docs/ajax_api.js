@@ -877,5 +877,25 @@ var result_publisher_message_group = {
 	status:"false",
 	error:"..."
 }
- 
- 
+
+var get_my_publish_message_list = {
+	
+}
+
+var result_get_my_publish_message_list = {
+	messages:[{id:123,title:""},//这只是个预览而已，要看详细的信息就要点进去，获取detail
+			  {id:123,title:""}
+	]
+}
+
+var get_my_publish_message_detail = {//你发布的message能获得更多的detail
+	id:123
+}
+
+var result_get_my_publish_message_detail = {//你发布的message能获得更多的detail
+	title:"",
+	content:"",
+	receivers:[{id:123,name:"梁建均",readed:true},
+				{id:133,name:"李浩寰",readed:false}
+	]
+}
