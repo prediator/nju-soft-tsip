@@ -837,10 +837,10 @@ var result_get_picture_detail = {
  */
 
 /**
- * url:/client/message/create
+ * url:/client/message/create/some
  * @type 
  */
-var publisth_message_tosome = {
+var publish_message_tosome = {
 	receivers:[{id:123},
 		       {id:124}
 		       
@@ -851,15 +851,19 @@ var publisth_message_tosome = {
 	content:"寒假将要到来，清同学注意。。。"
 }
 
-var result_publisth_message_tosome = {
+var result_publish_message_tosome = {
 	status:"true"
 }
 
-var result_publisth_message_tosome = {
+var result_publish_message_tosome = {
 	status:"false",
 	error:"..."
 }
 
+/**
+ * url:/client/message/create/student
+ * @type 
+ */
 var publisher_message_tostudent = {//把消息发送给所有学生
 	
 }
