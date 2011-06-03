@@ -925,7 +925,7 @@ var result_get_my_publish_message_detail = {//你发布的message能获得更多
 }
 
 /**
- * 
+ * url:/client/message/getall
  * @type 
  */
 var get_all_message = {//接受收到的信息
@@ -939,6 +939,10 @@ var result_get_all_message = {
 	]
 }
 
+/**
+ * url:/client/message/getallunreaded
+ * @type 
+ */
 var get_all_unreaded_message = {
 	
 }
