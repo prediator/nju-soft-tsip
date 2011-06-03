@@ -144,7 +144,7 @@ public class LetterController {
 			contents.add(tempResult);
 		}
 		Map<String, Object> result = Maps.newHashMap();
-		result.put("name", userService.find(User.class, (Integer)param.get("otherId")));
+		result.put("name", userService.find(User.class, (Integer)param.get("otherId")).getRealName());
 		result.put("contents", contents);
 		return result;
 		

@@ -2,10 +2,8 @@ package cn.edu.nju.tsip.entity;
 
 import java.util.List;
 import java.util.Set;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
@@ -46,8 +44,8 @@ public class Message extends BaseEntity {
 	 * 消息所对应的每个用户状态
 	 * @see Message_User
 	 */
-	@OneToMany(mappedBy="message",fetch = FetchType.LAZY)
-	@JoinColumn
+	@OneToMany(cascade = CascadeType.ALL,mappedBy="message",fetch = FetchType.LAZY)
+	@JoinColumn(name="message_id")
 	private Set<Message_User> message2Users = Sets.newHashSet();
 	
 	/**
@@ -97,5 +95,4 @@ public class Message extends BaseEntity {
 	public String getTitle() {
 		return title;
 	}
-
 }
