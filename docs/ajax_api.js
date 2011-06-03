@@ -547,6 +547,7 @@
  }
  
  /**
+  * url:/client/leter/getlatest
   * 这个获取最近的聊天记录，包括你看过和没看过的
   * @type 
   */
@@ -967,3 +968,4 @@ var result_get_message_detail = {
 	content:"",
 	comments:[]
 }
+////////////////////////////////////////////////////////////////
