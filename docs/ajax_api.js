@@ -921,7 +921,8 @@ var result_get_my_publish_message_detail = {//你发布的message能获得更多
 	content:"",
 	receivers:[{id:123,name:"梁建均",readed:true},
 				{id:133,name:"李浩寰",readed:false}
-	]
+	],
+	comments:[]
 }
 
 /**
@@ -958,5 +959,7 @@ var get_message_detail = {//一旦发送这个请求，message将标为已读
 }
 
 var result_get_message_detail = {
-	
+	title:"",
+	content:"",
+	comments:[]
 }
