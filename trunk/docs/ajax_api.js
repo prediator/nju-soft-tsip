@@ -639,28 +639,28 @@
   */
  var get_user_list = {
  	studentList:[
- 				{id:123,realName:"ljj"},
- 				{id:123,realName:"lhh"}
+ 				{id:123,realName:"ljj",isOnline:true},
+ 				{id:123,realName:"lhh",isOnline:false}
  				//more ... 
  	],
  	teacherList:[
- 				{id:123,realName:"ljj"},
- 				{id:123,realName:"lhh"}
+ 				{id:123,realName:"ljj",isOnline:false},
+ 				{id:123,realName:"lhh",isOnline:false}
  				//more ...
  	],
  	counsellorList:[
- 				{id:123,realName:"ljj"},
- 				{id:123,realName:"lhh"}
+ 				{id:123,realName:"ljj",isOnline:false},
+ 				{id:123,realName:"lhh",isOnline:false}
  				//more ...
  	],
  	adminList:[
- 				{id:123,realName:"ljj"},
- 				{id:123,realName:"lhh"}
+ 				{id:123,realName:"ljj",isOnline:false},
+ 				{id:123,realName:"lhh",isOnline:false}
  				//more ...
  	],
  	leaderList:[
- 				{id:123,realName:"ljj"},
- 				{id:123,realName:"lhh"}
+ 				{id:123,realName:"ljj",isOnline:false},
+ 				{id:123,realName:"lhh",isOnline:false}
  				//more ...
  	]
  	
@@ -924,6 +924,10 @@ var result_get_my_publish_message_detail = {//你发布的message能获得更多
 	]
 }
 
+/**
+ * 
+ * @type 
+ */
 var get_all_message = {//接受收到的信息
 	
 }
