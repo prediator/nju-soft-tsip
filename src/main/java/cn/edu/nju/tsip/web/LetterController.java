@@ -135,7 +135,8 @@ public class LetterController {
 	public @ResponseBody Map<String,? extends Object> getLatestRecord(@RequestBody Map<String, ? extends Object> param, HttpServletResponse response,HttpSession session){
 		List<Letter> letters = letterService.getLatestLetters((Integer)session.getAttribute("id"), (Integer)param.get("otherId"),(Integer) param.get("start"),(Integer) param.get("end"));
 		List<Map<String, Object>> contents = Lists.newArrayList();
-		for(Letter letter:letters){
+		for(int i = letters.size()-1;i>=0;i--){
+			Letter letter = letters.get(i);
 			Map<String, Object> tempResult = Maps.newHashMap();
 			tempResult.put("content",letter.getContent());
 			tempResult.put("createDate",letter.getCreateDate().toString());
