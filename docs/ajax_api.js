@@ -954,6 +954,10 @@ var result_get_all_unreaded_message = {
 	]
 }
 
+/**
+ * url:/client/message/detail
+ * @type 
+ */
 var get_message_detail = {//一旦发送这个请求，message将标为已读
 	id:13
 }
