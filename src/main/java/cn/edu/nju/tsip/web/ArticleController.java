@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -32,6 +34,8 @@ import cn.edu.nju.tsip.service.ServiceException;
 
 @Controller
 public class ArticleController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(MblogController.class);
 	
 	private Validator validator;
 	
@@ -79,10 +83,12 @@ public class ArticleController {
 	
 	@RequestMapping(value="/client/article/add",method=RequestMethod.POST)
 	public @ResponseBody Map<String, String> addArticle(@RequestBody Map<String, Object> param, HttpServletResponse response,HttpSession session){
+		logger.info("client add artcile");
 		Article article = new Article();
 		article.setVisible((Boolean) param.get("visible"));
 		article.setContent((String) param.get("content"));
 		article.setTitle((String) param.get("title"));
+		article.setPublisher(userService.find(User.class, (Integer) session.getAttribute("id")));
 		article.setCategory(categoryService.getCategory((String) param.get("category_name"), (Integer)session.getAttribute("id")));
 		if(param.containsKey("shareArticleId")){
 			article.setShareArticle(articleService.find(Article.class,(Integer) param.get("shareArticleId")));

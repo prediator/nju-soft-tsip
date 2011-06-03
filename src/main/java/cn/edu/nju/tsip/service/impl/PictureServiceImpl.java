@@ -12,14 +12,19 @@ public class PictureServiceImpl<T extends Picture> extends ServiceImpl<T> implem
 
 	@Override
 	public void create(T baseBean) {
-		// TODO Auto-generated method stub
-		
+		dao.persist(baseBean);
 	}
 
 	@Override
 	public void delete(T baseBean) {
-		// TODO Auto-generated method stub
 		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public T getCover(int albumId) {
+		return (T)dao.createQuery("from Picture as picture where pictures_id = "+albumId+" order by picture.createDate desc ").uniqueResult();
+		//====================problem=================================
+		//没有在album中设置cover，且picture中没有指向album，albumservice中的dao不能返回picture
 	}
 
 }

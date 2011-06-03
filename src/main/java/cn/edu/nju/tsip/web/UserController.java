@@ -91,6 +91,7 @@ public class UserController {
 			Map<String, Object> map = Maps.newHashMap();
 			map.put("id", user.getId());
 			map.put("realName", user.getRealName());
+			map.put("isOnline", user.isOnline());
 			switch (role) {
 			case 's':
 				studentList.add(map);

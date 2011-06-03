@@ -2,12 +2,12 @@ package cn.edu.nju.tsip.web;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,8 +29,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
 import cn.edu.nju.tsip.entity.Album;
+import cn.edu.nju.tsip.entity.Comment;
 import cn.edu.nju.tsip.entity.Picture;
 import cn.edu.nju.tsip.entity.User;
 import cn.edu.nju.tsip.service.IAlbumService;
@@ -150,7 +152,8 @@ public class PictureController {
 	public @ResponseBody Map<String, String> pictureUpload(@RequestParam("file") MultipartFile file,@PathVariable String albumName,@PathVariable String descrip,HttpServletRequest request,HttpServletResponse response,HttpSession session) throws UnsupportedEncodingException {
 		logger.info("client upload picture");
 		Date date = new Date();
-		String fileName = session.getAttribute("id")+session.toString()+date.getTime();
+		String fileName = session.getAttribute("id")+session.getId()+date.getTime()+file.getOriginalFilename();
+		System.out.println(fileName);
 		File targetFile = new File(request.getSession().getServletContext().getRealPath("images"), fileName);
 		if (!targetFile.exists()) {
 			targetFile.mkdirs();
@@ -192,6 +195,7 @@ public class PictureController {
 	
 	@RequestMapping(value="/client/album/getMy",method=RequestMethod.POST)
 	public @ResponseBody Map<String, ? extends Object> getMyAlbums(@RequestBody Map<String,String> param, HttpServletResponse response,HttpSession session){
+		logger.info("get my album list");
 		List<Album> albums = albumService.getAlbums((Integer) session.getAttribute("id"));
 		List<Map<String, Object>> contents = Lists.newArrayList();
 		for(Album album:albums){
@@ -199,12 +203,13 @@ public class PictureController {
 			tempResult.put("id", album.getId());
 			tempResult.put("name", album.getName());
 			tempResult.put("createDate", album.getCreateDate().toString());
-			Picture cover = albumService.getCover(album.getId());
+			Picture cover = pictureService.getCover(album.getId());
 			if(cover==null){
 				tempResult.put("cover","nopicture.jpg");
 			}else{
 				tempResult.put("cover",cover.getName());
 			}
+			contents.add(tempResult);
 		}
 		return Collections.singletonMap("albums", contents);
 		
@@ -213,13 +218,15 @@ public class PictureController {
 	@RequestMapping(value="/client/album/get",method=RequestMethod.POST)
 	public @ResponseBody Map<String, ? extends Object> getAlbums(@RequestBody Map<String,Object> param, HttpServletResponse response,HttpSession session){
 		List<Album> albums = albumService.getAlbums((Integer) param.get("userId"));
+		System.out.println(param.get("userId"));
 		List<Map<String, Object>> contents = Lists.newArrayList();
 		for(Album album:albums){
+			System.out.println(album.getName());
 			Map<String, Object> tempResult = Maps.newHashMap();
 			tempResult.put("id", album.getId());
 			tempResult.put("name", album.getName());
 			tempResult.put("createDate", album.getCreateDate().toString());
-			Picture cover = albumService.getCover(album.getId());
+			Picture cover = pictureService.getCover(album.getId());
 			if(cover==null){
 				tempResult.put("cover","nopicture.jpg");
 			}else{
@@ -239,9 +246,61 @@ public class PictureController {
 			return failure;
 		}else{
 			Map<String, Object> result = Maps.newHashMap();
-			
+			result.put("name", album.getName());
+			result.put("ownerId", album.getOwner().getId());
+			result.put("createDate", album.getCreateDate());
+			Picture cover = pictureService.getCover(album.getId());
+			if(cover==null){
+				result.put("cover","nopicture.jpg");
+			}else{
+				result.put("cover",cover.getName());
+			}
+			Set<Map<String, Object>> pictures = Sets.newHashSet();
+			for(Picture picture : album.getPictures()){
+				Map<String, Object> temp = Maps.newHashMap();
+				temp.put("id", picture.getId());
+				temp.put("description", picture.getDescritpion());
+				temp.put("url", picture.getName());
+				temp.put("createDate", picture.getCreateDate());
+				pictures.add(temp);
+			}
+			result.put("pictures", pictures);
 			return result;
 		}
+	}
+	
+	@RequestMapping(value="/client/picture/detail",method=RequestMethod.POST)
+	public @ResponseBody Map<String, ? extends Object> getPictureDetail(@RequestBody Map<String,Object> param, HttpServletResponse response,HttpSession session){
+		Picture picture = pictureService.find(Picture.class, (Integer) param.get("id"));
+		if(picture==null){
+			Map<String, String> failure = Maps.newHashMap();
+			failure.put("status", "false");
+			failure.put("error", "不存在该相片");
+			return failure;
+		}else{
+			Map<String, Object> result = Maps.newHashMap();
+			result.put("description", picture.getDescritpion());
+			result.put("url", picture.getName());//////////////////////////////////////
+			result.put("createDate", picture.getCreateDate());
+			result.put("comments",commentsMessage(picture.getComments()));
+			return result;
+		}
+	}
+	
+	private List<Map<String, Object>> commentsMessage(List<Comment> comments){
+		List<Map<String, Object>> result = Lists.newArrayList();
+		for(Comment comment:comments){
+			Map<String, Object> cMap = Maps.newHashMap();
+			cMap.put("id", comment.getId());
+			cMap.put("content", comment.getContent());
+			cMap.put("createDate", comment.getCreateDate());
+			Map<String, Object> author = Maps.newHashMap();
+			author.put("id", comment.getAuthor().getId());
+			author.put("name", comment.getAuthor().getRealName());
+			cMap.put("author", author);
+			result.add(cMap);
+		}
+		return result;
 	}
 	
 	@ExceptionHandler(ServiceException.class)

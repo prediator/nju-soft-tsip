@@ -98,6 +98,7 @@ public class User extends BaseEntity {
 	 * @see Message_User
 	 */
 	@OneToMany(mappedBy="user",fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id")
 	private Set<Message_User> user2Messages = Sets.newHashSet();
 	
 	private boolean online = false;

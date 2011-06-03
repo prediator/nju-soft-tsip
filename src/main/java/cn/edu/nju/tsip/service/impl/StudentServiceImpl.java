@@ -1,5 +1,7 @@
 package cn.edu.nju.tsip.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +37,10 @@ public class StudentServiceImpl<T extends Student> extends ServiceImpl<T> implem
 	public void delete(T baseBean) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public List<T> getAll() {
+		return dao.list("from Student as student");
 	}
 
 }
