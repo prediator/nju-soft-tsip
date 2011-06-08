@@ -594,6 +594,10 @@
  	content:""
  }
  
+ /**
+  * url:/client/disugroup/receive
+  * @type 
+  */
  var get_content = {
  	
  }
