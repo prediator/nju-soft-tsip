@@ -1091,20 +1091,23 @@ var change_my_info = {//和get_my_info_detail一样
 }
 
 /**
- * 
+ * url：/client/student/add
  * @type 
  */
 var create_student = {
-	students:[
-	{loginName:"",passord:"",stno:1333,sex:true,birthday:""},
-	{}
-	]
+	loginName:"",password:"",stno:1333,sex:true,birthday:""
 }
 
 var delete_student = {
 	
 }
 
+var search_student = {
+	grade:"",
+	remarks:"",
+	talent:"",
+	hobby:""
+}
 
 
 
