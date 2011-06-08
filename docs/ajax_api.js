@@ -1067,24 +1067,33 @@ var result_get_my_info_detail = {
 	birthday:""//
 }
 
+/**
+ * url:/client/user/changepassword
+ * @type 
+ */
 var change_password = {
 	oldPassword:"",
 	newPassword:""//客户端输两遍，确保没错
 }
 
-/**
- * url:/client/user/changepassword
- * @type 
- */
 var result_change_password = {
 	
 }
 
+/**
+ * url:/client/student/changeinfo
+ * 注意：1.能修改的信息：loginName，realName，createDate，stno，remarks，hobby，talent，sex，birthday
+ * @type 
+ */
 var change_my_info = {//和get_my_info_detail一样
 	talent:"",//修改talent
 	remarks:""//修改remarks
 }
 
+/**
+ * 
+ * @type 
+ */
 var create_student = {
 	students:[
 	{loginName:"",passord:"",stno:1333,sex:true,birthday:""},
