@@ -488,6 +488,7 @@
  }
  
  //==========================================================
+ //===================聊天相关操作=============================
  /**
   * 聊天的api
   * 注意：1.聊天的内容就是悄悄话，只不过把悄悄话变成即时而已，如果该人没有上线，可以给他发送悄悄话，
@@ -567,6 +568,10 @@
  	]
  }
  
+ /**
+  * url：/client/disugroup/add
+  * @type 
+  */
  var add_group = {
  	name:"",//group名字不能重复
  	users:[{id:132},{id:234}]
@@ -1055,6 +1060,10 @@ var change_password = {
 	newPassword:""//客户端输两遍，确保没错
 }
 
+/**
+ * url:/client/user/changepassword
+ * @type 
+ */
 var result_change_password = {
 	
 }
