@@ -1,5 +1,6 @@
 package cn.edu.nju.tsip.entity;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -44,6 +45,10 @@ public class BBS extends BaseEntity {
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn
 	private List<Comment> comments = Lists.newArrayList();
+	
+	@NotNull
+	@Temporal(value = TemporalType.TIMESTAMP)
+	private Date createDate = new Date();
 
 	public String getContent() {
 		return content;
@@ -83,6 +88,14 @@ public class BBS extends BaseEntity {
 
 	public String getTitle() {
 		return title;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
 	}
 
 }

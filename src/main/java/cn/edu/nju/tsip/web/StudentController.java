@@ -1,6 +1,11 @@
 package cn.edu.nju.tsip.web;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -94,7 +99,7 @@ public class StudentController {
 			result.put("loginName", student.getLoginName());
 			result.put("realName", student.getRealName());
 			result.put("role", "student");
-			if( student.getHeadImg().getName() == null){
+			if( student.getHeadImg() == null){
 				result.put("headImg", "nohead.gif");
 			}else{
 				result.put("headImg", student.getHeadImg().getName());
@@ -110,6 +115,65 @@ public class StudentController {
 			result.put("birthday", student.getBirthday());
 			return result;
 		}
+	}
+	
+	@RequestMapping(value="/client/student/changeinfo",method=RequestMethod.POST)
+	public @ResponseBody Map<String, ? extends Object> changeMyinfo(@RequestBody Map<String,Object> param, HttpServletResponse response,HttpSession session) throws ParseException{
+		Student student = studentService.find(Student.class, (Integer) session.getAttribute("id"));
+		if(param.get("loginName")!=null){
+			student.setLoginName((String) param.get("loginName"));
+		}
+		if(param.get("realName")!=null){
+			student.setRealName((String) param.get("realName"));
+		}
+		if(param.get("createDate")!=null){
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-dd-mm HH:mm:ss");
+			Date date = sdf.parse((String) param.get("createDate"));
+			student.setCreateDate(date);
+		}
+		if(param.get("stno")!=null){
+			student.setStno((Integer) param.get("stno"));
+		}
+		if(param.get("remarks")!=null){
+			student.setRemarks((String) param.get("remarks"));
+		}
+		if(param.get("hobby")!=null){
+			student.setHobby((String) param.get("hobby"));
+		}
+		if(param.get("talent")!=null){
+			student.setTalent((String) param.get("talent"));
+		}
+		if(param.get("sex")!=null){
+			student.setSex((Boolean) param.get("sex"));
+		}
+		if(param.get("birthday")!=null){
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-dd-mm");
+			Date birthday = sdf.parse((String) param.get("birthday"));
+			student.setBirthday(birthday);
+		}
+		studentService.update(student);
+		return Collections.singletonMap("status", "true");
+	}
+	
+	@RequestMapping(value="/client/student/add",method=RequestMethod.POST)
+	public @ResponseBody Map<String, ? extends Object> addstudent(@RequestBody Map<String,Object> param, HttpServletResponse response,HttpSession session) throws ParseException{
+		Student student = new Student();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-dd-mm");
+		Date birthday = sdf.parse((String) param.get("birthday"));
+		student.setBirthday(birthday);
+		student.setPassword((String) param.get("password"));
+		student.setLoginName((String) param.get("loginName"));
+		student.setStno((Integer) param.get("stdno"));
+		student.setSex((Boolean) param.get("sex"));
+		studentService.create(student);
+		return Collections.singletonMap("status", "true");
+	}
+	
+	@RequestMapping(value="/client/student/search",method=RequestMethod.POST)
+	public @ResponseBody Map<String, ? extends Object> searchStudent(@RequestBody Map<String,Object> param, HttpServletResponse response,HttpSession session) throws ParseException{
+		List<Student> students = studentService.search((String)param.get("grade"), (String)param.get("remarks"), (String)param.get("talent"), (String)param.get("hobby"), (Boolean)param.get("sex"),(String)param.get("realname"));
+		
+		return param;
 	}
 
 }

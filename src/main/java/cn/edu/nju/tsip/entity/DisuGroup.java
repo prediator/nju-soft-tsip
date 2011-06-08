@@ -4,8 +4,10 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import com.google.common.collect.Sets;
 
@@ -16,9 +18,9 @@ public class DisuGroup extends BaseEntity {
 	@JoinTable
 	private Set<User> users = Sets.newHashSet();
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable
-	private User author;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn
+	private User creator;
 	
 	private String name;
 
@@ -39,11 +41,11 @@ public class DisuGroup extends BaseEntity {
 		this.users = users;
 	}
 
-	public User getAuthor() {
-		return author;
+	public User getCreator() {
+		return creator;
 	}
 
-	public void setAuthor(User author) {
-		this.author = author;
+	public void setAuthor(User creator) {
+		this.creator = creator;
 	}
 }
