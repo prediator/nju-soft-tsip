@@ -1056,7 +1056,7 @@ var result_get_BBS_list = {
 }
 
 /**
- * url:
+ * url:/client/BBS/detail
  * @type 
  */
 var get_BBS_detail = {
