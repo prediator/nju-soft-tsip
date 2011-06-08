@@ -1,5 +1,6 @@
 package cn.edu.nju.tsip.web;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -84,7 +85,7 @@ public class MessageController {
 	@RequestMapping(value="/client/message/create/some",method=RequestMethod.POST)
 	public @ResponseBody Map<String, ? extends Object> addMessage(@RequestBody Map<String,Object> param, HttpServletResponse response,HttpSession session){
 		logger.info("client adding message");
-		if(!session.getAttribute("role").toString().equals("student")){
+		if(session.getAttribute("role").toString().equals("student")){
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			Map<String, String> failureMessages = new HashMap<String, String>();
 			failureMessages.put("status", "false");
@@ -95,12 +96,12 @@ public class MessageController {
 		message.setTitle((String) param.get("title"));
 		message.setContent((String) param.get("content"));
 		message.setPublisher(userService.find(User.class, (Integer) session.getAttribute("id")));
-		Set<Integer> userIds = (Set<Integer>) param.get("receivers");
+		List<Map<String, Integer>> userIds = (ArrayList<Map<String,Integer>>) param.get("receivers");
 		Set<Message_User> mus = message.getMessage2Users();
-		for(Integer userId:userIds){
+		for(Map<String, Integer> userId:userIds){
 			Message_User mu = new Message_User();
 			mu.setMessage(message);
-			mu.setUser(userService.find(User.class,userId));
+			mu.setUser(userService.find(User.class,userId.get("id")));
 			mus.add(mu);
 		}
 		messageService.create(message);
@@ -220,6 +221,7 @@ public class MessageController {
 			tempResult.put("readed", mu.isReaded());
 			tempResult.put("publisherId", mu.getUser().getId());
 			tempResult.put("publishName", mu.getUser().getRealName());
+			tempResult.put("content", mu.getMessage().getContent());
 			contents.add(tempResult);
 		}
 		return Collections.singletonMap("messages",contents);

@@ -43,4 +43,29 @@ public class StudentServiceImpl<T extends Student> extends ServiceImpl<T> implem
 		return dao.list("from Student as student");
 	}
 
+	public List<T> search(String grade, String remarks, String talent,String hobby, Boolean sex,String name) {
+		String hql = "from Student as student where ";
+		boolean flag = false;
+		if(grade!=null){
+			hql+="student.stdno = :stdno ";
+			flag = true;
+		}
+		if(remarks!=null){
+			hql+=(flag?"and ":"")+"student.remarks ";
+		}
+		if(remarks!=null){
+			
+		}
+		if(remarks!=null){
+			
+		}
+		if(remarks!=null){
+			
+		}
+		if(remarks!=null){
+	
+		}
+		return null;
+	}
+
 }

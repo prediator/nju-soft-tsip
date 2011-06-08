@@ -41,7 +41,7 @@ public class MblogServiceImpl<T extends MBlog> extends ServiceImpl<T> implements
 	}
 
 	public List<T> getAllMBlogs() {
-		return dao.list("from MBlog as mblog where mblog.deleted = false", 0, 50);
+		return dao.list("from MBlog as mblog where mblog.deleted = false  order by mblog.createDate desc", 0, 50);
 	}
 
 }

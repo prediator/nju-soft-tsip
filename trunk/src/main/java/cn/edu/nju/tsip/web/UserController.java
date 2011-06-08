@@ -64,6 +64,7 @@ public class UserController {
 			return failureMessages;
 		}else{
 			session.setAttribute("id", user.getId());
+			session.setAttribute("role", user.getRoleList().get(0).getName());
 			user.setOnline(true);
 			user.setLoginPlace(param.get("loginPlace"));
 			userService.update(user);
@@ -135,5 +136,20 @@ public class UserController {
 			return Collections.singletonMap("status", "true");
 		}
 		
+	}
+	
+	@RequestMapping(value="/client/user/changepassword",method=RequestMethod.POST)
+	public @ResponseBody Map<String, String> changePassword(@RequestBody Map<String, String> param, HttpServletResponse response,HttpSession session){
+		User user = userService.find(User.class, (Integer)session.getAttribute("id"));
+		if(user.getPassword().equals(param.get("oldPassword"))){
+			user.setPassword(param.get("newPassword"));
+			return Collections.singletonMap("status", "true");
+		}else{
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			Map<String, String> failureMessages = new HashMap<String, String>();
+			failureMessages.put("status", "false");
+			failureMessages.put("error", "参数错误");
+			return failureMessages;
+		}
 	}
 }
