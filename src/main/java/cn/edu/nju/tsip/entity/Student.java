@@ -1,5 +1,6 @@
 package cn.edu.nju.tsip.entity;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -36,6 +37,9 @@ public class Student extends User {
 	 */
 	@Temporal(value = TemporalType.DATE)
 	private Date birthday;
+	
+	@OneToMany(mappedBy="student",fetch = FetchType.LAZY)
+	private Set<CourseInfo> courseInfos;
 
 	public int getStno() {
 		return stno;
@@ -83,6 +87,14 @@ public class Student extends User {
 
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
+	}
+
+	public void setCourseInfos(Set<CourseInfo> courseInfos) {
+		this.courseInfos = courseInfos;
+	}
+
+	public Set<CourseInfo> getCourseInfos() {
+		return courseInfos;
 	}
 
 

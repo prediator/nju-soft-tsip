@@ -567,6 +567,37 @@
  	]
  }
  
+ var add_group = {
+ 	name:"",//group名字不能重复
+ 	users:[{id:132},{id:234}]
+ }
+ 
+ var add_user_to_group = {
+ 	userId:123
+ }
+ 
+ var send_content = {
+ 	groupName:"",
+ 	content:""
+ }
+ 
+ var get_content = {
+ 	
+ }
+ 
+ var result_get_content = {
+ 	messages:[
+ 				{groupId:12313,
+ 				 groupName:"",
+ 				 senderName:"ljj",
+ 				 senderId:123,
+ 				 content:"yes i know you",
+ 				 createDate:""}//createDate 是用来显示服务器接收到的时间，让用户知道发送这实际发送这条消息的时间
+ 				 //...
+ 				
+ 	]
+ }
+ 
  /**
   * url：/client/user/getOnline
   * @type 
@@ -971,12 +1002,83 @@ var result_get_message_detail = {
 //==========================================================================
 //==========================个人中心相关操作==================================
 var get_student_info_detail = {
+	id:123
+}
+
+/**
+ * 注意：1，好友分组，发的状态，文章列表,分数等另见其他api
+ * url：/client/student/getinfo
+ * @type 
+ */
+var result_get_student_info_detail = {
+	loginName:"",
+	realName:"",
+	role:"",//这里肯定是student，因为teacher的和student不同
+	headImg:"url",
+	createDate:"",//注册时间
+	online:true,
+	loginPlace:"",//如果不在线，则显示最后一次登录时的地方
+	stno:0123213,
+	remarks:"",//备注
+	hobby:"",//爱好
+	talent:"",//擅长
+	sex:true,//性别
+	birthday:""//
+}
+/**
+ * 
+ * url
+ * :/client/student/getmyinfo
+ * @type 
+ */
+var get_my_info_detail = {
+}
+
+var result_get_my_info_detail = {
+	loginName:"",
+	realName:"",
+	role:"",
+	headImg:"url",
+	createDate:"",//注册时间
+	online:true,
+	loginPlace:"",//如果不在线，则显示最后一次登录时的地方
+	stno:0123213,
+	remarks:"",//备注
+	hobby:"",//爱好
+	talent:"",//擅长
+	sex:"",//性别
+	birthday:""//
+}
+
+var change_password = {
+	oldPassword:"",
+	newPassword:""//客户端输两遍，确保没错
+}
+
+var result_change_password = {
 	
 }
 
-var result_get_student_info_detail = {
+var change_my_info = {//和get_my_info_detail一样
+	talent:"",//修改talent
+	remarks:""//修改remarks
+}
+
+var create_student = {
+	students:[
+	{loginName:"",passord:"",stno:1333,sex:true,birthday:""},
+	{}
+	]
+}
+
+var delete_student = {
 	
 }
+
+
+
+
+
 
 
 
