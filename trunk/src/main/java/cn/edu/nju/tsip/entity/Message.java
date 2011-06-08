@@ -45,7 +45,6 @@ public class Message extends BaseEntity {
 	 * @see Message_User
 	 */
 	@OneToMany(cascade = CascadeType.ALL,mappedBy="message",fetch = FetchType.LAZY)
-	@JoinColumn(name="message_id")
 	private Set<Message_User> message2Users = Sets.newHashSet();
 	
 	/**

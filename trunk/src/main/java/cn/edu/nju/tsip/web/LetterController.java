@@ -147,7 +147,8 @@ public class LetterController {
 		Map<String, Object> result = Maps.newHashMap();
 		result.put("name", userService.find(User.class, (Integer)param.get("otherId")).getRealName());
 		result.put("contents", contents);
-		return result;
-		
+		return result;	
 	}
+	
+	
 }
