@@ -984,8 +984,8 @@ var get_all_message = {//接受收到的信息
 
 
 var result_get_all_message = {
-	messages:[{id:123,title:"",readed:true,publisherId:123,publisherName:"高羽祥"},//这只是个预览而已，要看详细的信息就要点进去，获取detail
-			  {id:123,title:"",readed:false,publisherId:123,publisherName:"高羽祥"}
+	messages:[{id:123,title:"",readed:true,publisherId:123,publisherName:"高羽祥",content:""},//这只是个预览而已，要看详细的信息就要点进去，获取detail
+			  {id:123,title:"",readed:false,publisherId:123,publisherName:"高羽祥",content:""}
 	]
 }
 
@@ -1023,24 +1023,42 @@ var result_get_message_detail = {
  * 注意：1. 公告版是给所有看得，消息是老师发送给某些人的，公告版不会记录哪个人读过没有，只会统计被浏览次数
  * @type 
  */
+/**
+ * url:/client/BBS/create
+ * @type 
+ */
 var add_BBS = {
 	title:"",
 	content:""
 }
 
 var change_BBS = {
-	id:21312
+	id:21312,
+	title:"",
+	content:""//有改则写，没改则不写
 }
 
 var result_change_BBS = {
-	title:"",
-	content:""
+	status:"true"
 }
 
+
+/**
+ * url:/client/BBS/get
+ * @type 
+ */
 var get_BBS_list = {
+	
+}
+
+var result_get_BBS_list = {
 	BBSs:[{id:123,title:"",publisherName:"",publisherId:123,creatDate:""}]
 }
 
+/**
+ * url:
+ * @type 
+ */
 var get_BBS_detail = {
 	id:123
 }
@@ -1057,15 +1075,16 @@ var result_getBBS_detatil = {
 //评论没写
 //==========================================================================
 //==========================个人中心相关操作==================================
-var get_student_info_detail = {
-	id:123
-}
-
 /**
  * 注意：1，好友分组，发的状态，文章列表,分数等另见其他api
  * url：/client/student/getinfo
  * @type 
  */
+var get_student_info_detail = {
+	id:123
+}
+
+
 var result_get_student_info_detail = {
 	loginName:"",
 	realName:"",
