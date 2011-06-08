@@ -1146,7 +1146,8 @@ var search_student = {
 	remarks:"",
 	talent:"",
 	hobby:"",
-	sex:""
+	sex:true,
+	realname:""
 }
 
 
