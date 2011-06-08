@@ -1161,7 +1161,7 @@ var delete_student = {
 }
 
 /**
- * 
+ * url:/client/student/search
  * @type 
  */
 var search_student = {
