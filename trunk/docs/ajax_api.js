@@ -1016,6 +1016,45 @@ var result_get_message_detail = {
 	content:"",
 	comments:[]
 }
+
+//==========================================================================
+//==========================公告版相关操作==========================================
+/**
+ * 注意：1. 公告版是给所有看得，消息是老师发送给某些人的，公告版不会记录哪个人读过没有，只会统计被浏览次数
+ * @type 
+ */
+var add_BBS = {
+	title:"",
+	content:""
+}
+
+var change_BBS = {
+	id:21312
+}
+
+var result_change_BBS = {
+	title:"",
+	content:""
+}
+
+var get_BBS_list = {
+	BBSs:[{id:123,title:"",publisherName:"",publisherId:123,creatDate:""}]
+}
+
+var get_BBS_detail = {
+	id:123
+}
+
+var result_getBBS_detatil = {
+	title:"",
+	content:"",
+	publisherName:"",
+	publisherId:123,
+	readTimes:23,
+	comments:[]//同上
+}
+
+//评论没写
 //==========================================================================
 //==========================个人中心相关操作==================================
 var get_student_info_detail = {
@@ -1106,7 +1145,8 @@ var search_student = {
 	grade:"",
 	remarks:"",
 	talent:"",
-	hobby:""
+	hobby:"",
+	sex:""
 }
 
 
