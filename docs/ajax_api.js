@@ -585,6 +585,10 @@
  	userId:123
  }
  
+ /**
+  * url：/client/disugroup/send
+  * @type 
+  */
  var send_content = {
  	groupName:"",
  	content:""
