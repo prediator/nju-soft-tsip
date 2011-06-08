@@ -569,15 +569,19 @@
  }
  
  /**
-  * url：/client/disugroup/add
+  * url：/client/disugroup/create
   * @type 
   */
  var add_group = {
- 	name:"",//group名字不能重复
- 	users:[{id:132},{id:234}]
+ 	name:"软工讨论组"//group名字不能重复
  }
  
+ /**
+  * url:/client/disugroup/adduser
+  * @type 
+  */
  var add_user_to_group = {
+ 	name:"软工讨论组",
  	userId:123
  }
  
@@ -614,7 +618,7 @@
  var result_get_online_user = {
  	users:[{name:ljj,
  			id:3243,
- 			role:"stuent",
+ 			role:"student",
  			loginPlace:"仙林"},//如果登录用户不知丁，则显示unknown
  		   {},
  		   {}]
