@@ -1160,6 +1160,10 @@ var delete_student = {
 	
 }
 
+/**
+ * 
+ * @type 
+ */
 var search_student = {
 	grade:"",
 	remarks:"",
@@ -1169,6 +1173,9 @@ var search_student = {
 	realname:""
 }
 
+var result_search_student = {
+	users:[{id:123,name:李浩寰}]
+}
 
 
 
