@@ -1052,9 +1052,9 @@ var result_get_my_info_detail = {
 	online:true,
 	loginPlace:"",//如果不在线，则显示最后一次登录时的地方
 	stno:0123213,
-	remarks:"",//备注
+	remarks:"",//备注改为技术特长
 	hobby:"",//爱好
-	talent:"",//擅长
+	talent:"",//擅长改为技术优势
 	sex:"",//性别
 	birthday:""//
 }
