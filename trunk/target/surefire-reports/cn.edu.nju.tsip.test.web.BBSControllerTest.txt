@@ -1,9 +1,9 @@
 -------------------------------------------------------------------------------
-Test set: cn.edu.nju.tsip.test.web.UserControllerTest
+Test set: cn.edu.nju.tsip.test.web.BBSControllerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec <<< FAILURE!
-warning(junit.framework.TestSuite$1)  Time elapsed: 0 sec  <<< FAILURE!
-junit.framework.AssertionFailedError: No tests found in cn.edu.nju.tsip.test.web.UserControllerTest
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.033 sec <<< FAILURE!
+warning(junit.framework.TestSuite$1)  Time elapsed: 0.001 sec  <<< FAILURE!
+junit.framework.AssertionFailedError: No tests found in cn.edu.nju.tsip.test.web.BBSControllerTest
 	at junit.framework.Assert.fail(Assert.java:47)
 	at junit.framework.TestSuite$1.runTest(TestSuite.java:97)
 	at junit.framework.TestCase.runBare(TestCase.java:134)

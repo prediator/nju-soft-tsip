@@ -9,6 +9,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Test;
 import com.google.common.collect.Maps;
 
+import cn.edu.nju.tsip.entity.MBlog;
 import cn.edu.nju.tsip.test.util.ControllerTest;
 import cn.edu.nju.tsip.web.MblogController;
 
@@ -45,5 +46,27 @@ public class MblogControllerTest extends ControllerTest<MblogController> {
 		//bWriter.close();
 		//fileWriter.close();
 		//List<Map<String, Object>> rList = (List<Map<String, Object>>) map.get("mblogs");
+	}
+	
+	@Test
+	public void testGetMBlogDetail(){
+		request.getSession().setAttribute("id", 1);
+		Map<String, Object> param = Maps.newHashMap();
+		Map<String,? extends Object> map = controller.getMBlogDetail(param, response, request.getSession());
+		
+	}
+	
+	@Test
+	public void testCommentsMessage(){
+		request.getSession().setAttribute("id", 1);
+		Map<String, Object> param = Maps.newHashMap();
+		Map<String,? extends Object> map = controller.getMBlogs(param, response, request.getSession());
+	}
+	
+	@Test
+	public void testAddComment(){
+		request.getSession().setAttribute("id", 1);
+		Map<String, Object> param = Maps.newHashMap();
+		Map<String,? extends Object> map = controller.addcomment(param, response, request, request.getSession());
 	}
 }
