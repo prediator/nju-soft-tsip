@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: cn.edu.nju.tsip.test.service.UserServiceTest
+Test set: cn.edu.nju.tsip.test.service.LetterServiceTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 sec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.106 sec

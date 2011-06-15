@@ -29,7 +29,7 @@ public class BBSServiceImpl<T extends BBS> extends ServiceImpl<T> implements IBB
 	}
 
 	public List<T> getBBSs() {
-		return dao.list("from BBS as bbs group by bbs.createDate desc");
+		return dao.list("from BBS as bbs order by bbs.createDate desc");
 	}
 
 }
